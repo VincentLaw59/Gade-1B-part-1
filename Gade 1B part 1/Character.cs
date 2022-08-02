@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gade_1B_part_1
 {
-    internal class Character: Tile
+    internal class Character : Tile
     {
         protected int hp;
         protected int maxHp;
@@ -17,10 +17,35 @@ namespace Gade_1B_part_1
         protected int Damage { get { return damage; } set { damage = value; } }
 
 
-        public Character(int x, int y) : base (x,y)
+        public Character(int x, int y) : base(x, y)
         {
-            
+
         }
+
+        string[,] tileArray = new string[,]
+        {
+            {"up", "" },
+            {"left", "right"},
+            {"down", "" }
+
+
+        };
+
+
+        public enum Movement
+        {
+            NoMovement,
+            Up,
+            Down,
+            Left,
+            Right,
+        }
+
+
+
+
+
+
 
     }
 }
