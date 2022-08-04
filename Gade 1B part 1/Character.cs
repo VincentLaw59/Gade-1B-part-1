@@ -20,19 +20,25 @@ namespace Gade_1B_part_1
         public char C { get { return c; } set { c = value; } }
         public bool IsDead { get { return isDead; } set { isDead = value; } }
 
-
         public Character(int x, int y, char character) : base(x, y)
         {
-            
+         
         }
 
-        string[,] characterVision = new string[,]
-        {
-            {"",     "up", "" },
-            {"","left", "right"},
-            {"",     "down", "" }
-        };
+        //
+        //string[,] characterVision = new string[,]
+        //{
+        //    {"",     "up", "" },
+        //    {"","left", "right"},
+        //    {"",     "down", "" }
+        //};
+        //
+        // **Question Asks for a "Tile" array
 
+        Tile[] characterVision = new Tile[]
+        {
+           
+        };
 
         public enum Movement
         {
@@ -46,8 +52,6 @@ namespace Gade_1B_part_1
         public virtual void Attack(Character target)
         {
             hp = hp - damage;
-
-
         }
 
         public virtual bool CheckRange(Character target)
