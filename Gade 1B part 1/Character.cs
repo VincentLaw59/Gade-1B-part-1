@@ -26,12 +26,11 @@ namespace Gade_1B_part_1
             
         }
 
-        string[,] characterVision = new string[,]
+        string[] characterVision = new string[]
         {
-            {"",     "up", "" },
-            {"","left", "right"},
-            {"",     "down", "" }
-        };
+            {"NoMovement", "Up", "Down", "Left", "Right"},
+            
+        };//change to 1D
 
 
         public enum Movement
@@ -65,9 +64,42 @@ namespace Gade_1B_part_1
         private int DistanceTo(Character target)
         {
 
-            int distanceX = target.x - this.x;
-            int distanceY = target.y - this.y;
+            int distanceX = target.X - this.X;
+            int distanceY = target.Y - this.Y;
             return Math.Abs(distanceX + distanceY);
+        }
+
+        public void Move(Movement move)
+        {
+            switch (move)
+            {
+                case Movement.NoMovement: 
+                    //no movement
+                    break;
+                case Movement.Up:
+                    this.Y += 1;
+
+                    break;
+                case Movement.Down:
+                    this.Y -= 1;
+
+                    break;
+                case Movement.Left:
+                    this.X -= 1;
+
+                    break;
+                case Movement.Right:
+                    this.X += 1;
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public abstract Movement ReturnMove(Movement move = 0)
+        {
+
         }
 
     }
