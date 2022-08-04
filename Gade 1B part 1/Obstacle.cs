@@ -12,6 +12,6 @@ namespace Gade_1B_part_1
         {
 
         }
-
+        
     }
 }
