@@ -40,7 +40,7 @@ namespace Gade_1B_part_1
            
         };
 
-        public enum Movement
+        public enum MovementEnum
         {
             NoMovement,
             Up,
@@ -51,7 +51,7 @@ namespace Gade_1B_part_1
 
         public virtual void Attack(Character target)
         {
-            hp = hp - damage;
+            target.hp = target.hp - damage;
         }
 
         public virtual bool CheckRange(Character target)
@@ -73,6 +73,6 @@ namespace Gade_1B_part_1
             int distanceY = target.y - this.y;
             return Math.Abs(distanceX + distanceY);
         }
-
+        
     }
 }
