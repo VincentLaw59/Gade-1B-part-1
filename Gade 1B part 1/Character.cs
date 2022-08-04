@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gade_1B_part_1
 {
-    internal class Character : Tile
+    internal abstract class Character : Tile
     {
         protected int hp;
         protected int maxHp;
@@ -23,7 +23,7 @@ namespace Gade_1B_part_1
 
         public Character(int x, int y, char character) : base(x, y)
         {
-
+            
         }
 
         string[,] characterVision = new string[,]
@@ -43,21 +43,31 @@ namespace Gade_1B_part_1
             Right,
         }
 
-        public virtual void Attack(Character)
+        public virtual void Attack(Character target)
         {
             hp = hp - damage;
 
 
         }
 
-        public virtual bool CheckRange(Character)
+        public virtual bool CheckRange(Character target)
         {
-
+            if (DistanceTo(target) <= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public void DistanceTo()
+        private int DistanceTo(Character target)
         {
 
+            int distanceX = target.x - this.x;
+            int distanceY = target.y - this.y;
+            return Math.Abs(distanceX + distanceY);
         }
 
     }
