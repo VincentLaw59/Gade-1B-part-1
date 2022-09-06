@@ -28,7 +28,7 @@ namespace Gade_1B_part_1
 
         string[] characterVision = new string[]
         {
-            {"NoMovement", "Up", "Down", "Left", "Right"},
+            "NoMovement", "Up", "Down", "Left", "Right"
             
         };//change to 1D
 
@@ -97,10 +97,11 @@ namespace Gade_1B_part_1
             }
         }
 
-        public abstract Movement ReturnMove(Movement move = 0)
-        {
+        public abstract Movement ReturnMove(Movement move = 0);
 
-        }
+
+        public abstract override string ToString();
+        
 
     }
 }
