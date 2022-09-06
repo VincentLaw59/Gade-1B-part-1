@@ -20,20 +20,35 @@ namespace Gade_1B_part_1
         public char C { get { return c; } set { c = value; } }
         public bool IsDead { get { return isDead; } set { isDead = value; } }
 
-
         public Character(int x, int y, char character) : base(x, y)
         {
-            
+         
         }
 
+<<<<<<< HEAD
+        //
+        //string[,] characterVision = new string[,]
+        //{
+        //    {"",     "up", "" },
+        //    {"","left", "right"},
+        //    {"",     "down", "" }
+        //};
+        //
+        // **Question Asks for a "Tile" array
+
+        Tile[] characterVision = new Tile[]
+        {
+           
+        };
+=======
         string[] characterVision = new string[]
         {
             "NoMovement", "Up", "Down", "Left", "Right"
             
         };//change to 1D
+>>>>>>> b8f6ebba9f14c14f3fc1fd537087a17a391d2af3
 
-
-        public enum Movement
+        public enum MovementEnum
         {
             NoMovement,
             Up,
@@ -44,9 +59,7 @@ namespace Gade_1B_part_1
 
         public virtual void Attack(Character target)
         {
-            hp = hp - damage;
-
-
+            target.hp = target.hp - damage;
         }
 
         public virtual bool CheckRange(Character target)
@@ -68,6 +81,9 @@ namespace Gade_1B_part_1
             int distanceY = target.Y - this.Y;
             return Math.Abs(distanceX + distanceY);
         }
+<<<<<<< HEAD
+        
+=======
 
         public void Move(Movement move)
         {
@@ -103,5 +119,6 @@ namespace Gade_1B_part_1
         public abstract override string ToString();
         
 
+>>>>>>> b8f6ebba9f14c14f3fc1fd537087a17a391d2af3
     }
 }
