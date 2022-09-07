@@ -25,7 +25,7 @@ namespace Gade_1B_part_1
          
         }
 
-<<<<<<< HEAD
+
         //
         //string[,] characterVision = new string[,]
         //{
@@ -36,17 +36,21 @@ namespace Gade_1B_part_1
         //
         // **Question Asks for a "Tile" array
 
-        Tile[] characterVision = new Tile[]
-        {
+        //Tile[] characterVision = new Tile[]
+        //{
            
-        };
-=======
+        //};
+
+        
+
         string[] characterVision = new string[]
         {
             "NoMovement", "Up", "Down", "Left", "Right"
             
-        };//change to 1D
->>>>>>> b8f6ebba9f14c14f3fc1fd537087a17a391d2af3
+        };
+
+        Tile[] vision = new Tile[5];
+
 
         public enum MovementEnum
         {
@@ -81,30 +85,28 @@ namespace Gade_1B_part_1
             int distanceY = target.Y - this.Y;
             return Math.Abs(distanceX + distanceY);
         }
-<<<<<<< HEAD
-        
-=======
 
-        public void Move(Movement move)
+
+        public void Move(MovementEnum move)
         {
             switch (move)
             {
-                case Movement.NoMovement: 
+                case MovementEnum.NoMovement: 
                     //no movement
                     break;
-                case Movement.Up:
+                case MovementEnum.Up:
                     this.Y += 1;
 
                     break;
-                case Movement.Down:
+                case MovementEnum.Down:
                     this.Y -= 1;
 
                     break;
-                case Movement.Left:
+                case MovementEnum.Left:
                     this.X -= 1;
 
                     break;
-                case Movement.Right:
+                case MovementEnum.Right:
                     this.X += 1;
 
                     break;
@@ -113,12 +115,11 @@ namespace Gade_1B_part_1
             }
         }
 
-        public abstract Movement ReturnMove(Movement move = 0);
+        public abstract MovementEnum ReturnMove(MovementEnum move = 0);
 
 
         public abstract override string ToString();
         
 
->>>>>>> b8f6ebba9f14c14f3fc1fd537087a17a391d2af3
     }
 }
