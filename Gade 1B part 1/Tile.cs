@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gade_1B_part_1
 {
-    internal abstract class Tile
+    public abstract class Tile
     {
         //Pos (x, y)
         protected int x;

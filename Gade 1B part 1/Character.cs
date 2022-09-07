@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gade_1B_part_1
 {
-    internal abstract class Character : Tile
+    public abstract class Character : Tile
     {
         protected int hp;
         protected int maxHp;
@@ -43,7 +43,7 @@ namespace Gade_1B_part_1
 
         
 
-        string[] characterVision = new string[]
+        public string[] characterVision = new string[]
         {
             "NoMovement", "Up", "Down", "Left", "Right"
             
