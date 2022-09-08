@@ -25,7 +25,7 @@ namespace Gade_1B_part_1
         }
 
         //Constructor
-        public Tile(int x, int y)
+        public Tile(int x, int y) //should this not also have (...,TileType type...) parameter?
         {
             this.x = x;
             this.y = y;

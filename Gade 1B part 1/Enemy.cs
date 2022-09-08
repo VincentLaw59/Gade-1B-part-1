@@ -14,7 +14,7 @@ namespace Gade_1B_part_1
 
         protected int random;
         public int Random { get { return random; } set { random = value; } }
-        //is this not supposed to be Random rand = new Random()
+        //is this not supposed to be "Random rand = new Random()"
 
         public Enemy(int x, int y, int damage, char character): base(x, y, character)
         {
