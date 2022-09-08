@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Gade_1B_part_1
 {
-    class Map
+    public class Map
     {
-        private Tile[] map;
-        Hero Hero;
+        private Tile[]? map;
+        Hero? Hero;
         private Enemy[] enemies;
 
         private int mapWidth;
@@ -28,6 +28,8 @@ namespace Gade_1B_part_1
             Create();
             
         }
+
+        
 
         private void Create()
         {
