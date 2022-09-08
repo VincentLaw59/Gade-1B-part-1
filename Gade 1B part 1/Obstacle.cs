@@ -10,7 +10,7 @@ namespace Gade_1B_part_1
     {
         public Obstacle(int x, int y) : base(x, y)
         {
-
+            
         }
         
     }
