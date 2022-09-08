@@ -20,26 +20,31 @@ namespace Gade_1B_part_1
             if(MovementEnum.Up.ToString() == characterVision[1])
             {
                 //Move up
+                return MovementEnum.Up;
             }
 
             if(MovementEnum.Down.ToString() == characterVision[2])
             {
                 //Move down
+                return MovementEnum.Down;
             }
 
             if(MovementEnum.Left.ToString() == characterVision[3])
             {
                 //Move left
+                return MovementEnum.Left;
             }
 
             if(MovementEnum.Right.ToString() == characterVision[4])
             {
                 //Move right
+                return MovementEnum.Right;
             }
 
             else
             {
                 move = 0; //No movement
+                return MovementEnum.NoMovement;
             }
 
             throw new NotImplementedException();
