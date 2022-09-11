@@ -13,31 +13,36 @@ namespace Gade_1B_part_1
         private void btnStart_Click(object sender, EventArgs e)
         {
             Map Game = new Map(5, 10, 5, 10, 8);
-            
+
             for (int k = 0; k < Game.MapWidth; k++)
             {
                 string verticalString = "";
                 for (int i = 0; i < Game.MapHeight; i++)
                 {
                     Tile VerticalEntity = Game.gameMap[k, i];
-                    
-                    if (VerticalEntity != null)
+
+                    if (VerticalEntity == null)
                     {
                         Game.gameMap[k, i] = new EmptyTile(k, i);
-                        verticalString += "\t.";
+                        verticalString += "." + "\t";
                     }
                     else if (VerticalEntity is Enemy)
                     {
-                        verticalString += "\t" + (char)190;
+                        verticalString += "E" + "\t" ;
                     }
                     else if (VerticalEntity is Hero)
                     {
-                        verticalString += "\t" + (char)208;
+                        verticalString += "H" + "\t" ;
                     }
+                    else if (VerticalEntity is Obstacle)
+                    {
+                        verticalString += "X" + "\t" ;
+                    }
+                    //else MessageBox.Show(verticalString.ToString());
                 }
-                redPlayArea.Text = verticalString + "\n";
+                redPlayArea.AppendText(verticalString + "\n");
             }
-            
+            //MessageBox.Show("This shows if everything executed");
         }
 
         private void btnLeft_Click(object sender, EventArgs e)

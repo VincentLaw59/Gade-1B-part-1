@@ -9,7 +9,7 @@ namespace Gade_1B_part_1
     public class GameEngine
     {
 
-        private static Map map;
+        private static Map ?map;
         private static Hero Hero = new Hero(5, 5, 20, 20, 2, HeroChar); //fix char
         private static char heroChar = (char)208;
         private static char empty = (char)44;

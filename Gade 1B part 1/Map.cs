@@ -30,26 +30,39 @@ namespace Gade_1B_part_1
             map = new Tile[mapWidth,mapHeight];
 
             enemies = new Enemy[amtEnemies];
-            //Spawn Hero
-            Create(Tile.TileType.Hero);
-            //Spawn enemies
-            DeleteThisCreate(Tile.TileType.Enemy);
 
-
-            for (int k = 0; k < enemies.Length; k++)
-            {
-                enemies[k] = (Enemy)Create(Tile.TileType.Enemy);    //Possible Error
-            }
-
-            UpdateVision();
-        }
-
-        //Q3.2/////////////not finished yet/////////////
-        public void UpdateVision()
-        {
+            //Generate Bounds
             for (int k = 0; k < MapWidth; k++)
             {
                 for (int j = 0; j < MapHeight; j++)
+                {
+                    if ((k == 0) || (j == 0) || (j == MapHeight - 1) || (k == MapWidth - 1))
+                    {
+                        map[k, j] = new Obstacle(k, j);
+                    }
+                }
+            }
+                    
+            //Spawn Hero
+            Player = (Hero)Create(Tile.TileType.Hero);
+            map[Player.X, Player.Y] = Player;
+
+            //Spawn enemies
+            for (int p = 0; p < enemies.Length; p++)
+            {
+                enemies[p] = (Enemy)Create(Tile.TileType.Enemy);
+                map[enemies[p].X, enemies[p].Y] = enemies[p];
+            }
+
+            UpdateVision();
+
+        }
+
+        public void UpdateVision()
+        {
+            for (int k = 1; k < MapWidth - 1; k++)
+            {
+                for (int j = 1; j < MapHeight - 1; j++)
                 {
                     if (map[k,j] is Hero)
                     {
@@ -64,7 +77,7 @@ namespace Gade_1B_part_1
                         for (int m = 0; m < enemies.Length; m++)
                         {
                             enemies[m].vision[0] = map[k + 1, j];
-                            enemies[m].vision[1] = map[k + -1, j];
+                            enemies[m].vision[1] = map[k - 1, j];
                             enemies[m].vision[2] = map[k, j + 1];
                             enemies[m].vision[3] = map[k, j - 1];
                         }
@@ -118,10 +131,10 @@ namespace Gade_1B_part_1
             int xCoord, yCoord;
             do
             {
-                xCoord = rand.Next(1, mapWidth);
-                yCoord = rand.Next(1, mapHeight);
+                xCoord = rand.Next(1, mapWidth - 1);
+                yCoord = rand.Next(1, mapHeight - 1);
             }
-            while (map[xCoord, yCoord] is not EmptyTile);
+            while (map[xCoord, yCoord] != null);
 
             //Create Entity
             if (type == Tile.TileType.Hero)
