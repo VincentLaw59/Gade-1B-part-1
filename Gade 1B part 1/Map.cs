@@ -37,6 +37,7 @@ namespace Gade_1B_part_1
             UpdateVision();
         }
 
+        //Q3.2/////////////not finished yet/////////////
         public void UpdateVision()
         {
             for (int k = 0; k < MapWidth; k++)
@@ -45,13 +46,13 @@ namespace Gade_1B_part_1
                 {
                     if (map[k,j] != null)
                     {
-                        
+                        //map[k, j]
                     }
                 }
             }
         }
 
-        private Tile Create(Tile.TileType type)
+        private Tile DeleteThisCreate(Tile.TileType type)
         {
             if (type == Tile.TileType.Hero)
             {
@@ -87,7 +88,22 @@ namespace Gade_1B_part_1
             }
             
 
-            return ;
+            return  ;
+        }
+
+        private Tile Create(Tile.TileType type)
+        {
+            //Generate position for object
+            int xCoord, yCoord;
+            do
+            {
+                xCoord = rand.Next(1, mapWidth);
+                yCoord = rand.Next(1, mapHeight);
+            }
+            while (map[xCoord, yCoord] is not EmptyTile);
+
+            //Create Entity
+            return new Hero(xCoord, yCoord, 10, 10, 2, (char)208);
         }
     }
 }

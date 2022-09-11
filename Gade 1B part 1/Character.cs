@@ -19,7 +19,8 @@ namespace Gade_1B_part_1
         public int Damage { get { return damage; } set { damage = value; } }
         public char C { get { return c; } set { c = value; } }
         public bool IsDead { get { return isDead; } set { isDead = value; } }
-
+        
+        public Tile[] vision = new Tile[4];
         public Character(int x, int y, char character) : base(x, y)
         {
          
@@ -49,7 +50,7 @@ namespace Gade_1B_part_1
             
         };
 
-        public Tile[] vision = new Tile[4];
+        
 
 
         public enum MovementEnum
