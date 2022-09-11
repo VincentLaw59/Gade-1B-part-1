@@ -10,7 +10,6 @@ namespace Gade_1B_part_1
     {
 
         private static Map map;
-
         private static Hero Hero = new Hero(5, 5, 20, 20, 2, HeroChar); //fix char
         private static char heroChar = (char)208;
         private static char empty = (char)44;
@@ -25,7 +24,7 @@ namespace Gade_1B_part_1
 
         public GameEngine()
         {
-            Map = new Map(2, 8, 2, 8, 3);
+            map = new Map(2, 8, 2, 8, 3);
 
             static bool MovePlayer(Character.MovementEnum direction)
             {

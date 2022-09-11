@@ -21,6 +21,7 @@ namespace Gade_1B_part_1
         public int MapWidth { get { return mapWidth; } set { mapWidth = value; } }
         public int MapHeight { get { return mapHeight; } set { mapHeight = value; } }
         public Tile[,] gameMap { get { return map; } set { map = value; } }
+    
         public Map(int minWidth, int maxWidth, int minHeight, int maxHeight, int amtEnemies)
         {
             mapWidth = rand.Next(minWidth, maxWidth);
@@ -30,15 +31,15 @@ namespace Gade_1B_part_1
 
             enemies = new Enemy[amtEnemies];
             //Spawn Hero
-            DeleteThisCreate(Tile.TileType.Hero);
+            Create(Tile.TileType.Hero);
             //Spawn enemies
             DeleteThisCreate(Tile.TileType.Enemy);
 
 
-            //for (int k = 0; k < enemies.Length; k++)
-            //{
-            //    enemies[k] = Create(Tile.TileType.Enemy);
-            //}
+            for (int k = 0; k < enemies.Length; k++)
+            {
+                enemies[k] = (Enemy)Create(Tile.TileType.Enemy);    //Possible Error
+            }
 
             UpdateVision();
         }
@@ -50,9 +51,19 @@ namespace Gade_1B_part_1
             {
                 for (int j = 0; j < MapHeight; j++)
                 {
-                    if (map[k,j] != null)
+                    if (map[k,j] is Hero)
                     {
-                        //map[k, j]
+                        //////////////
+                        Player.vision[0] = map[k + 1, j];
+                        Player.vision[0] = map[k + 1, j];
+                        Player.vision[0] = map[k + 1, j];
+                        Player.vision[0] = map[k + 1, j];
+
+
+                    }
+                    else if (map[k,j] is Enemy)
+                    {
+                        enemies[0].vision[0] = map[k + 1, j];
                     }
                 }
             }
@@ -109,7 +120,11 @@ namespace Gade_1B_part_1
             while (map[xCoord, yCoord] is not EmptyTile);
 
             //Create Entity
-            return new Hero(xCoord, yCoord, 10, 10, 2, (char)208);
+            if (type == Tile.TileType.Hero)
+                return new Hero(xCoord, yCoord, 10, 10, 2, (char)208);
+            else if (type == Tile.TileType.Enemy)
+                return new SwampCreature(xCoord, yCoord, 10, 10, 2, (char)190);
+            else return new EmptyTile(xCoord, yCoord);
         }
     }
 }
