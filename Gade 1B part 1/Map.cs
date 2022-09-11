@@ -10,7 +10,7 @@ namespace Gade_1B_part_1
     {
 
         private Tile[,] map;
-        Hero Player;
+        public Hero Player;
 
         private Enemy[] enemies;
 

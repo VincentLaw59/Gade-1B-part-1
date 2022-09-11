@@ -8,7 +8,7 @@ namespace Gade_1B_part_1
 {
     public class GameEngine
     {
-        private Map map;
+        private static Map map;
        
         private static Hero Hero = new Hero(5, 5, 20, 20, 2, HeroChar); //fix char
         private static char heroChar = (char)208;
@@ -16,7 +16,7 @@ namespace Gade_1B_part_1
         private static char swampCreature = (char)199;
         private static char obstacle = (char)42;
 
-        public Map Map { get { return map; } set { map = value; } }
+        public static Map Map { get { return map; } set { map = value; } }
         public static char HeroChar { get { return heroChar; }}
         public char Empty { get { return empty; }}
         public char SwampCreature { get { return swampCreature; }}
@@ -28,43 +28,29 @@ namespace Gade_1B_part_1
 
             static bool MovePlayer(Character.MovementEnum direction)
             {
-                if (direction == Character.MovementEnum.Up)
+                if ((direction == Character.MovementEnum.Up) && (Map.Player.vision[0] is EmptyTile)) 
                 {
-                    Hero!.X = Hero.X + 1;
-
-
-                    return true;
+                     Map.Player.Move(direction);
                 }
 
-                if (direction == Character.MovementEnum.Down)
+                if ((direction == Character.MovementEnum.Down) && (Map.Player.vision[1] is EmptyTile))
                 {
-                    Hero!.X = Hero.X - 1;
-
-                    return true;
+                    Map.Player.Move(direction);
                 }
 
-                if (direction == Character.MovementEnum.Left)
+                if ((direction == Character.MovementEnum.Left) && (Map.Player.vision[2] is EmptyTile))
                 {
-                    Hero!.Y = Hero.Y - 1;   
-
-                    return true;
+                    Map.Player.Move(direction);
                 }
 
-                if (direction == Character.MovementEnum.Right)
+                if ((direction == Character.MovementEnum.Right) && (Map.Player.vision[3] is EmptyTile))
                 {
-                    Hero!.X = Hero.X + 1;
-
-                    return true;
+                    Map.Player.Move(direction);
                 }
 
-                else if (direction == Character.MovementEnum.NoMovement)
+                else if ((direction == Character.MovementEnum.NoMovement) && (Map.Player.vision[4] is not EmptyTile))
                 {
-                    Hero!.X = Hero.X + 0;
-                    Hero!.X = Hero.X - 0;
-                    Hero!.Y = Hero.Y + 0;
-                    Hero!.Y = Hero.Y - 0;
-
-                    return false;
+                    Map.Player.Move(direction);
                 }
                 return false;
 

@@ -19,7 +19,7 @@ namespace Gade_1B_part_1
         {
             int generateDirection = rand.Next(0, 5);
 
-            while ( vision[generateDirection] is not EmptyTile) //While chosen direction is not empty
+            while (vision[generateDirection] is not EmptyTile) //While chosen direction is not empty
             {
                 generateDirection = rand.Next(1, 6);
             }
