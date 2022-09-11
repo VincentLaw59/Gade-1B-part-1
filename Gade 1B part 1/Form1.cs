@@ -53,27 +53,27 @@ namespace Gade_1B_part_1
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            DirectionMap!.MovePlayer(Character.MovementEnum.Left);
+            DirectionMap?.MovePlayer(Character.MovementEnum.Left);
         }
 
         private void bntUp_Click(object sender, EventArgs e)
         {
-            DirectionMap!.MovePlayer(Character.MovementEnum.Up);
+            DirectionMap?.MovePlayer(Character.MovementEnum.Up);
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            DirectionMap!.MovePlayer(Character.MovementEnum.Right);
+            DirectionMap?.MovePlayer(Character.MovementEnum.Right);
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            DirectionMap!.MovePlayer(Character.MovementEnum.Down);
+            DirectionMap?.MovePlayer(Character.MovementEnum.Down);
         }
 
         private void AttackBtn_Click(object sender, EventArgs e)
         {
-            MyGameEngine!.Map.Player.CheckRange(Map.Enemies[EnemyList.SelectedIndex]);
+            MyGameEngine?.Map.Player.CheckRange(Map.Enemies[EnemyList.SelectedIndex]);
         }
 
         private void ListOfEnemies_SelectedIndexChanged(object sender, EventArgs e)
