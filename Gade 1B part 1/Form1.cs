@@ -2,17 +2,23 @@ namespace Gade_1B_part_1
 {
     public partial class frmGame : Form
     {
-        private static Map? directionMap;
-
-        public static Map DirectionMap { get { return directionMap!; } set { directionMap = value; } }
-        public frmGame()
+        private static GameEngine? directionMap;
+        private static GameEngine? gameEngine;
+        private static Map? enemyNames;
+        Map Game = new Map(5, 10, 5, 10, 8);
+        private static Character? enemyCharacter;
+        public static GameEngine DirectionMap { get { return directionMap!; } set { directionMap = value; } }
+        public static Map? EnemyNames { get { return enemyNames!; } set { enemyNames = value; } }
+        public static Character? EnemyCharacter { get { return enemyCharacter!; } set { EnemyCharacter = value; } }
+        public static GameEngine? MyGameEngine { get { return gameEngine; } set { gameEngine = value; } }
+        public frmGame() 
         {
             InitializeComponent();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Map Game = new Map(5, 10, 5, 10, 8);
+          
             
             for (int k = 0; k < Game.MapWidth; k++)
             {
@@ -42,22 +48,36 @@ namespace Gade_1B_part_1
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            DirectionMap.Player.Move(Character.MovementEnum.Left);
+            DirectionMap!.MovePlayer(Character.MovementEnum.Left);
         }
 
         private void bntUp_Click(object sender, EventArgs e)
         {
-            DirectionMap.Player.Move(Character.MovementEnum.Up);
+            DirectionMap!.MovePlayer(Character.MovementEnum.Up);
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            DirectionMap.Player.Move(Character.MovementEnum.Right);
+            DirectionMap!.MovePlayer(Character.MovementEnum.Right);
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            DirectionMap.Player.Move(Character.MovementEnum.Down);
+            DirectionMap!.MovePlayer(Character.MovementEnum.Down);
+        }
+
+        private void AttackBtn_Click(object sender, EventArgs e)
+        {
+            MyGameEngine!.Map.Player.CheckRange();
+           
+        }
+
+        private void EnemyList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for(int i = 0; i < Map.Enemies.Length; i++ )
+            {
+                EnemyList.Items.Add(Map.Enemies[i].ToString());
+            }
         }
     }
 }

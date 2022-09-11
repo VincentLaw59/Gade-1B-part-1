@@ -12,7 +12,7 @@ namespace Gade_1B_part_1
         private Tile[,] map;
         public Hero Player;
 
-        private Enemy[] enemies;
+        private static Enemy[]? enemies;
 
         private int mapWidth;
         private int mapHeight;
@@ -21,6 +21,8 @@ namespace Gade_1B_part_1
         public int MapWidth { get { return mapWidth; } set { mapWidth = value; } }
         public int MapHeight { get { return mapHeight; } set { mapHeight = value; } }
         public Tile[,] gameMap { get { return map; } set { map = value; } }
+        public static Enemy[] Enemies { get { return enemies!; } set { enemies = value; } }
+
         public Map(int minWidth, int maxWidth, int minHeight, int maxHeight, int amtEnemies)
         {
             mapWidth = rand.Next(minWidth, maxWidth);
@@ -28,7 +30,7 @@ namespace Gade_1B_part_1
 
             map = new Tile[mapWidth,mapHeight];
 
-            enemies = new Enemy[amtEnemies];
+            Enemies = new Enemy[amtEnemies];
             //Spawn Hero
             DeleteThisCreate(Tile.TileType.Hero);
             //Spawn enemies
@@ -87,9 +89,9 @@ namespace Gade_1B_part_1
                 while (map[xCoord, yCoord] is not EmptyTile);
 
                 //Spawn enemies
-                for (int k = 0; k < enemies.Length; k++)
+                for (int k = 0; k < Enemies.Length; k++)
                 {
-                    enemies[k] = new SwampCreature(xCoord, yCoord, 10, 10, 1, (char)190);
+                    Enemies[k] = new SwampCreature(xCoord, yCoord, 10, 10, 1, (char)190);
                 }
             }
             

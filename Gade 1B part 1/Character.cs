@@ -25,33 +25,14 @@ namespace Gade_1B_part_1
         {
          
         }
-
-
-        //
-        //string[,] characterVision = new string[,]
-        //{
-        //    {"",     "up", "" },
-        //    {"","left", "right"},
-        //    {"",     "down", "" }
-        //};
-        //
-        // **Question Asks for a "Tile" array
-
-        //Tile[] characterVision = new Tile[]
-        //{
-           
-        //};
-
-        
+                       
 
         public string[] characterVision = new string[]
         {
             "NoMovement", "Up", "Down", "Left", "Right"
             
         };
-
-        
-
+            
 
         public enum MovementEnum
         {
@@ -71,6 +52,7 @@ namespace Gade_1B_part_1
         {
             if (DistanceTo(target) <= 1)
             {
+                Attack(target);
                 return true;
             }
             else
@@ -116,6 +98,7 @@ namespace Gade_1B_part_1
             }
         }
 
+      
         public abstract MovementEnum ReturnMove(MovementEnum move = 0);
 
 

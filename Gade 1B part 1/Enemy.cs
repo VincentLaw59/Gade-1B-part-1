@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gade_1B_part_1
 {
-    internal abstract class Enemy : Character
+    public abstract class Enemy : Character
     {
         protected Enemy(int x, int y, char character) : base(x, y, character)
         {
