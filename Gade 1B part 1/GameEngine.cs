@@ -8,15 +8,15 @@ namespace Gade_1B_part_1
 {
     public class GameEngine
     {
-        private Map? map;
+        private Map map;
        
-        private static Hero? Hero = new Hero(5, 5, 20, 20, 2, HeroChar); //fix char
+        private static Hero Hero = new Hero(5, 5, 20, 20, 2, HeroChar); //fix char
         private static char heroChar = (char)208;
         private static char empty = (char)44;
         private static char swampCreature = (char)199;
         private static char obstacle = (char)42;
 
-        public Map? Map { get { return map; } set { map = value; } }
+        public Map Map { get { return map; } set { map = value; } }
         public static char HeroChar { get { return heroChar; }}
         public char Empty { get { return empty; }}
         public char SwampCreature { get { return swampCreature; }}

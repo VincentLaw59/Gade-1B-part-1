@@ -29,29 +29,65 @@ namespace Gade_1B_part_1
             map = new Tile[mapWidth,mapHeight];
 
             enemies = new Enemy[amtEnemies];
-            Create();
-            
+            //Spawn Hero
+            Create(Tile.TileType.Hero);
+            //Spawn Enemies
+            Create(Tile.TileType.Enemy);
+  
+            UpdateVision();
         }
 
-        
-
-        private void Create()
+        public void UpdateVision()
         {
-            int xCoord = rand.Next(1, mapWidth);
-            int yCoord = rand.Next(1, mapHeight);
-
-            //Create Hero
-            Player = new Hero(xCoord, yCoord, 10, 10, 2, (char)208);
-
-            //Loop through enemies creating all of them
-            for (int k = 1; k < enemies.Length; k++)
+            for (int k = 0; k < MapWidth; k++)
             {
+                for (int j = 0; j < MapHeight; j++)
+                {
+                    if (map[k,j] != null)
+                    {
+                        
+                    }
+                }
+            }
+        }
 
+        private Tile Create(Tile.TileType type)
+        {
+            if (type == Tile.TileType.Hero)
+            {
+                //Generate position for object
+                int xCoord, yCoord;
+                do
+                {
+                    xCoord = rand.Next(1, mapWidth);
+                    yCoord = rand.Next(1, mapHeight);
+                }
+                while (map[xCoord, yCoord] is not EmptyTile);
+                
+                //Create Hero
+                Player = new Hero(xCoord, yCoord, 10, 10, 2, (char)208);
             }
 
-            //Puts them in Tile map
+            else if (type == Tile.TileType.Enemy)
+            {
+                //Generate position for object
+                int xCoord, yCoord;
+                do
+                {
+                    xCoord = rand.Next(1, mapWidth);
+                    yCoord = rand.Next(1, mapHeight);
+                }
+                while (map[xCoord, yCoord] is not EmptyTile);
 
-            //UpdateVision
+                //Spawn enemies
+                for (int k = 0; k < enemies.Length; k++)
+                {
+                    enemies[k] = new SwampCreature(xCoord, yCoord, 10, 10, 1, (char)190);
+                }
+            }
+            
+
+            return ;
         }
     }
 }
