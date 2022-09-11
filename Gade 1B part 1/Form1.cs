@@ -68,16 +68,19 @@ namespace Gade_1B_part_1
 
         private void AttackBtn_Click(object sender, EventArgs e)
         {
-            MyGameEngine!.Map.Player.CheckRange();
+            MyGameEngine!.Map.Player.CheckRange(Map.Enemies[EnemyList.SelectedIndex]);
            
         }
 
         private void EnemyList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for(int i = 0; i < Map.Enemies.Length; i++ )
+            for (int i = 0; i < Map.Enemies.Length; i++)
             {
                 EnemyList.Items.Add(Map.Enemies[i].ToString());
             }
+
+
+
         }
     }
 }
