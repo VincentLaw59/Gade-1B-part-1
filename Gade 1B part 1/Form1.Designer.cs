@@ -44,6 +44,9 @@
             // 
             this.redPlayArea.Location = new System.Drawing.Point(30, 28);
             this.redPlayArea.Margin = new System.Windows.Forms.Padding(2);
+            this.redPlayArea.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.redPlayArea.Location = new System.Drawing.Point(37, 35);
+            this.redPlayArea.Margin = new System.Windows.Forms.Padding(2);
             this.redPlayArea.Name = "redPlayArea";
             this.redPlayArea.Size = new System.Drawing.Size(601, 601);
             this.redPlayArea.TabIndex = 0;
@@ -51,8 +54,8 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(734, 28);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStart.Location = new System.Drawing.Point(918, 35);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(90, 27);
             this.btnStart.TabIndex = 1;
@@ -62,8 +65,8 @@
             // 
             // bntUp
             // 
-            this.bntUp.Location = new System.Drawing.Point(734, 151);
-            this.bntUp.Margin = new System.Windows.Forms.Padding(2);
+            this.bntUp.Location = new System.Drawing.Point(918, 189);
+            this.bntUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bntUp.Name = "bntUp";
             this.bntUp.Size = new System.Drawing.Size(90, 27);
             this.bntUp.TabIndex = 2;
@@ -73,8 +76,8 @@
             // 
             // btnDown
             // 
-            this.btnDown.Location = new System.Drawing.Point(734, 212);
-            this.btnDown.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDown.Location = new System.Drawing.Point(918, 265);
+            this.btnDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(90, 27);
             this.btnDown.TabIndex = 3;
@@ -84,8 +87,8 @@
             // 
             // btnLeft
             // 
-            this.btnLeft.Location = new System.Drawing.Point(660, 185);
-            this.btnLeft.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLeft.Location = new System.Drawing.Point(825, 231);
+            this.btnLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(90, 27);
             this.btnLeft.TabIndex = 4;
@@ -95,8 +98,8 @@
             // 
             // btnRight
             // 
-            this.btnRight.Location = new System.Drawing.Point(808, 185);
-            this.btnRight.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRight.Location = new System.Drawing.Point(1010, 231);
+            this.btnRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(90, 27);
             this.btnRight.TabIndex = 5;
@@ -149,9 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 540);
-            this.Controls.Add(this.Attack);
-            this.Controls.Add(this.ListOfEnemies);
+            this.ClientSize = new System.Drawing.Size(1262, 675);
             this.Controls.Add(this.btnRight);
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.btnDown);

@@ -30,7 +30,18 @@ namespace Gade_1B_part_1
 
             map = new Tile[mapWidth,mapHeight];
 
-            enemies = new Enemy[amtEnemies];
+            //Spawn Border
+            for (int k = 0; k < mapWidth; k++)
+            {
+                for (int j = 0; j < mapHeight; j++)
+                {
+                    if ((k == 0) || (j == 0) || (j == mapHeight - 1) || (k == mapWidth - 1))
+                    {
+                        map[k, j] = new Obstacle(k, j);
+                    }
+                }
+            }
+                    enemies = new Enemy[amtEnemies];
             //Spawn Hero
             Player = (Hero)Create(Tile.TileType.Hero);
             map[Player.X, Player.Y] = Player;
