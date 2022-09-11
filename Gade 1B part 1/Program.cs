@@ -9,7 +9,7 @@ namespace Gade_1B_part_1
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new frmGame());
         }
     }
 }

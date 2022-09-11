@@ -17,6 +17,7 @@ namespace Gade_1B_part_1
 
         public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
         {
+            // If 
             if(MovementEnum.Up.ToString() == characterVision[1])
             {
                 //Move up
