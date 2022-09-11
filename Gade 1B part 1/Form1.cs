@@ -2,7 +2,9 @@ namespace Gade_1B_part_1
 {
     public partial class frmGame : Form
     {
+        private static Map? directionMap;
 
+        public static Map DirectionMap { get { return directionMap!; } set { directionMap = value; } }
         public frmGame()
         {
             InitializeComponent();
@@ -36,6 +38,26 @@ namespace Gade_1B_part_1
                 redPlayArea.Text = verticalString + "\n";
             }
             
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            DirectionMap.Player.Move(Character.MovementEnum.Left);
+        }
+
+        private void bntUp_Click(object sender, EventArgs e)
+        {
+            DirectionMap.Player.Move(Character.MovementEnum.Up);
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            DirectionMap.Player.Move(Character.MovementEnum.Right);
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            DirectionMap.Player.Move(Character.MovementEnum.Down);
         }
     }
 }
