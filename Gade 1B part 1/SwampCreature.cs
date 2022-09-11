@@ -17,9 +17,9 @@ namespace Gade_1B_part_1
 
         public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
         {
-            int generateDirection = rand.Next(1, 6);
+            int generateDirection = rand.Next(0, 5);
 
-            while (/* chosen direction != empty*/)
+            while ( vision[generateDirection] is not EmptyTile) //While chosen direction is not empty
             {
                 generateDirection = rand.Next(1, 6);
             }

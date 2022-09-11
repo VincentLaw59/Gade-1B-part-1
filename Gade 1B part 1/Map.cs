@@ -8,8 +8,8 @@ namespace Gade_1B_part_1
 {
     class Map
     {
-        private Tile[] map;
-        Hero Hero;
+        private Tile[,] map;
+        Hero Player;
         private Enemy[] enemies;
 
         private int mapWidth;
@@ -24,6 +24,8 @@ namespace Gade_1B_part_1
             mapWidth = rand.Next(minWidth, maxWidth);
             mapHeight = rand.Next(minHeight, maxHeight);
 
+            map = new Tile[mapWidth,mapHeight];
+
             enemies = new Enemy[amtEnemies];
             Create();
             
@@ -35,7 +37,7 @@ namespace Gade_1B_part_1
             int yCoord = rand.Next(1, mapHeight);
 
             //Create Hero
-            Hero = new Hero(xCoord, yCoord, 10, 10, 2, (char)208);
+            Player = new Hero(xCoord, yCoord, 10, 10, 2, (char)208);
 
             //Loop through enemies creating all of them
             for (int k = 1; k < enemies.Length; k++)

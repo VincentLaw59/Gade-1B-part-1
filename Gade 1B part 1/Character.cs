@@ -49,7 +49,7 @@ namespace Gade_1B_part_1
             
         };
 
-        Tile[] vision = new Tile[5];
+        public Tile[] vision = new Tile[5];
 
 
         public enum MovementEnum
