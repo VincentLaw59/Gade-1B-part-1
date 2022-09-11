@@ -16,7 +16,7 @@ namespace Gade_1B_part_1
         private static char swampCreature = (char)199;
         private static char obstacle = (char)42;
 
-        public static Map Map { get { return map; } set { map = value; } }
+        public static Map Map { get { return map!; } set { map = value; } }
         public static char HeroChar { get { return heroChar; }}
         public char Empty { get { return empty; }}
         public char SwampCreature { get { return swampCreature; }}
