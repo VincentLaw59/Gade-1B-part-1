@@ -41,18 +41,18 @@
             // redPlayArea
             // 
             this.redPlayArea.Location = new System.Drawing.Point(37, 35);
-            this.redPlayArea.Margin = new System.Windows.Forms.Padding(2);
+            this.redPlayArea.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.redPlayArea.Name = "redPlayArea";
-            this.redPlayArea.Size = new System.Drawing.Size(601, 601);
+            this.redPlayArea.Size = new System.Drawing.Size(750, 750);
             this.redPlayArea.TabIndex = 0;
             this.redPlayArea.Text = "";
             // 
             // btnStart
             // 
             this.btnStart.Location = new System.Drawing.Point(918, 35);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(90, 27);
+            this.btnStart.Size = new System.Drawing.Size(112, 34);
             this.btnStart.TabIndex = 1;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -61,9 +61,9 @@
             // bntUp
             // 
             this.bntUp.Location = new System.Drawing.Point(918, 189);
-            this.bntUp.Margin = new System.Windows.Forms.Padding(2);
+            this.bntUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bntUp.Name = "bntUp";
-            this.bntUp.Size = new System.Drawing.Size(90, 27);
+            this.bntUp.Size = new System.Drawing.Size(112, 34);
             this.bntUp.TabIndex = 2;
             this.bntUp.Text = "Up";
             this.bntUp.UseVisualStyleBackColor = true;
@@ -72,9 +72,9 @@
             // btnDown
             // 
             this.btnDown.Location = new System.Drawing.Point(918, 265);
-            this.btnDown.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(90, 27);
+            this.btnDown.Size = new System.Drawing.Size(112, 34);
             this.btnDown.TabIndex = 3;
             this.btnDown.Text = "Down";
             this.btnDown.UseVisualStyleBackColor = true;
@@ -83,9 +83,9 @@
             // btnLeft
             // 
             this.btnLeft.Location = new System.Drawing.Point(825, 231);
-            this.btnLeft.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(90, 27);
+            this.btnLeft.Size = new System.Drawing.Size(112, 34);
             this.btnLeft.TabIndex = 4;
             this.btnLeft.Text = "Left";
             this.btnLeft.UseVisualStyleBackColor = true;
@@ -94,9 +94,9 @@
             // btnRight
             // 
             this.btnRight.Location = new System.Drawing.Point(1010, 231);
-            this.btnRight.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(90, 27);
+            this.btnRight.Size = new System.Drawing.Size(112, 34);
             this.btnRight.TabIndex = 5;
             this.btnRight.Text = "Right";
             this.btnRight.UseVisualStyleBackColor = true;
@@ -125,11 +125,9 @@
             // 
             // frmGame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 675);
-            this.Controls.Add(this.AttackBtn);
-            this.Controls.Add(this.EnemyList);
             this.Controls.Add(this.btnRight);
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.btnDown);

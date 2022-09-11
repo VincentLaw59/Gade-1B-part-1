@@ -30,31 +30,45 @@ namespace Gade_1B_part_1
 
             map = new Tile[mapWidth,mapHeight];
 
-            Enemies = new Enemy[amtEnemies];
+            enemies = new Enemy[amtEnemies];
             //Spawn Hero
-            DeleteThisCreate(Tile.TileType.Hero);
+            Player = (Hero)Create(Tile.TileType.Hero);
+            map[Player.X, Player.Y] = Player;
+
             //Spawn enemies
-            DeleteThisCreate(Tile.TileType.Enemy);
-
-
-            //for (int k = 0; k < enemies.Length; k++)
-            //{
-            //    enemies[k] = Create(Tile.TileType.Enemy);
-            //}
+            for (int p = 0; p < enemies.Length; p++)
+            {
+                enemies[p] = (Enemy)Create(Tile.TileType.Enemy);
+                map[enemies[p].X, enemies[p].Y] = enemies[p];
+            }
 
             UpdateVision();
+
         }
 
-        //Q3.2/////////////not finished yet/////////////
         public void UpdateVision()
         {
-            for (int k = 0; k < MapWidth; k++)
+            for (int k = 1; k < MapWidth - 1; k++)
             {
-                for (int j = 0; j < MapHeight; j++)
+                for (int j = 1; j < MapHeight - 1; j++)
                 {
-                    if (map[k,j] != null)
+                    if (map[k,j] is Hero)
                     {
-                        //map[k, j]
+                        Player.vision[0] = map[k + 1, j];
+                        Player.vision[1] = map[k - 1, j];
+                        Player.vision[2] = map[k, j + 1];
+                        Player.vision[3] = map[k, j - 1];
+
+                    }
+                    else if (map[k,j] is Enemy)
+                    {
+                        for (int m = 0; m < enemies.Length; m++)
+                        {
+                            enemies[m].vision[0] = map[k + 1, j];
+                            enemies[m].vision[1] = map[k - 1, j];
+                            enemies[m].vision[2] = map[k, j + 1];
+                            enemies[m].vision[3] = map[k, j - 1];
+                        }
                     }
                 }
             }
@@ -105,13 +119,17 @@ namespace Gade_1B_part_1
             int xCoord, yCoord;
             do
             {
-                xCoord = rand.Next(1, mapWidth);
-                yCoord = rand.Next(1, mapHeight);
+                xCoord = rand.Next(1, mapWidth - 1);
+                yCoord = rand.Next(1, mapHeight - 1);
             }
-            while (map[xCoord, yCoord] is not EmptyTile);
+            while (map[xCoord, yCoord] != null);
 
             //Create Entity
-            return new Hero(xCoord, yCoord, 10, 10, 2, (char)208);
+            if (type == Tile.TileType.Hero)
+                return new Hero(xCoord, yCoord, 10, 10, 2, (char)208);
+            else if (type == Tile.TileType.Enemy)
+                return new SwampCreature(xCoord, yCoord, 10, 10, 2, (char)190);
+            else return new EmptyTile(xCoord, yCoord);
         }
     }
 }
