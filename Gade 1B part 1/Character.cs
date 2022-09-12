@@ -86,8 +86,10 @@ namespace Gade_1B_part_1
                     //no movement
                     break;
                 case MovementEnum.Up:
-                    this.Y += 1;
-
+                    {
+                        this.Y = this.Y + 1;
+                        MessageBox.Show("This reaches move");
+                    }
                     break;
                 case MovementEnum.Down:
                     this.Y -= 1;

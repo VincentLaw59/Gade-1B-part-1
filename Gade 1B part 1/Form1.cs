@@ -64,7 +64,7 @@ namespace Gade_1B_part_1
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            directionMap?.MovePlayer(Character.MovementEnum.Left);
+            directionMap.MovePlayer(Character.MovementEnum.Left);
             UpdateMap(Game);
             
         }
@@ -94,7 +94,7 @@ namespace Gade_1B_part_1
 
         private void ListOfEnemies_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < Map.Enemies.Length; i++)
+            for (int i = 0; i < Gam; i++)
             {
                 EnemyList.Items.Add(Map.Enemies[i].ToString());
             }
