@@ -29,6 +29,10 @@ namespace Gade_1B_part_1
                     if (VerticalEntity == null)
                     {
                         Game.gameMap[k, i] = new EmptyTile(k, i);
+                    }
+                    
+                    if (VerticalEntity is EmptyTile)
+                    {
                         verticalString += "." + "\t";
                     }
                     else if (VerticalEntity is Enemy)
