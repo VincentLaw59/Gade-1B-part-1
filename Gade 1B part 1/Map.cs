@@ -8,9 +8,8 @@ namespace Gade_1B_part_1
 {
     public class Map
     {
-
         private Tile[,] map;
-        public Hero Player;
+        public Hero player;
 
         private Enemy[] enemies;
 
@@ -18,6 +17,7 @@ namespace Gade_1B_part_1
         private int mapHeight;
         private Random rand = new Random();
 
+        public Hero Player { get { return player; } set { player = value; } }
         public int MapWidth { get { return mapWidth; } set { mapWidth = value; } }
         public int MapHeight { get { return mapHeight; } set { mapHeight = value; } }
         public Tile[,] gameMap { get { return map; } set { map = value; } }
@@ -44,9 +44,10 @@ namespace Gade_1B_part_1
                 }
             }
 
+            //Creating Hero
+            player = (Hero)Create(Tile.TileType.Hero);
             //Spawn Hero
-            Player = (Hero)Create(Tile.TileType.Hero);
-            map[Player.X, Player.Y] = Player;
+            map[player.X, player.Y] = player;
 
             //Spawn enemies
             for (int p = 0; p < enemies.Length; p++)
@@ -59,12 +60,13 @@ namespace Gade_1B_part_1
             UpdateVision();
         }
 
+
         public void UpdateVision()
         {
-            Player.vision[(int)Character.VisionEnum.North] = map[Player.X, Player.Y - 1];      
-            Player.vision[(int)Character.VisionEnum.South] = map[Player.X, Player.Y + 1];
-            Player.vision[(int)Character.VisionEnum.West] = map[Player.X - 1, Player.Y];
-            Player.vision[(int)Character.VisionEnum.East] = map[Player.X + 1, Player.Y];
+            player.vision[(int)Character.VisionEnum.North] = map[player.X, player.Y - 1];      
+            player.vision[(int)Character.VisionEnum.South] = map[player.X, player.Y + 1];
+            player.vision[(int)Character.VisionEnum.West] = map[player.X - 1, player.Y];
+            player.vision[(int)Character.VisionEnum.East] = map[player.X + 1, player.Y];
             
             for (int m = 0; m < enemies.Length; m++)
             {
@@ -90,7 +92,7 @@ namespace Gade_1B_part_1
                 while (map[xCoord, yCoord] is not EmptyTile);
                 
                 //Create Hero
-                Player = new Hero(xCoord, yCoord, 10, 10, 2, (char)208);
+                player = new Hero(xCoord, yCoord, 10, 10, 2, (char)208);
             }
 
             else if (type == Tile.TileType.Enemy)
@@ -112,7 +114,7 @@ namespace Gade_1B_part_1
             }
             
             //This is just to test, this is incorrect
-            return Player;
+            return player;
         }
 
         private Tile Create(Tile.TileType type)
@@ -121,8 +123,8 @@ namespace Gade_1B_part_1
             int xCoord, yCoord;
             do
             {
-                xCoord = rand.Next(1, mapWidth - 2);
-                yCoord = rand.Next(1, mapHeight - 2);
+                xCoord = rand.Next(1, mapWidth - 1);
+                yCoord = rand.Next(1, mapHeight - 1);
             }
             while (map[xCoord, yCoord] is not EmptyTile);
 
