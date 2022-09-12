@@ -31,7 +31,7 @@ namespace Gade_1B_part_1
             map = new Tile[mapWidth, mapHeight];
             enemies = new Enemy[amtEnemies];
 
-            //Spawn Border
+            //Spawn Border and fill Empty Tiles
             for (int k = 0; k < mapWidth; k++)
             {
                 for (int j = 0; j < mapHeight; j++)
@@ -40,6 +40,7 @@ namespace Gade_1B_part_1
                     {
                         map[k, j] = new Obstacle(k, j);
                     }
+                    else map[k, j] = new EmptyTile(k, j);
                 }
             }
 
@@ -123,7 +124,7 @@ namespace Gade_1B_part_1
                 xCoord = rand.Next(1, mapWidth - 2);
                 yCoord = rand.Next(1, mapHeight - 2);
             }
-            while (map[xCoord, yCoord] != null);
+            while (map[xCoord, yCoord] is not EmptyTile);
 
             //Create Entity
             if (type == Tile.TileType.Hero) 

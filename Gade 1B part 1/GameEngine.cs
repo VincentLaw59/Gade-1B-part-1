@@ -35,30 +35,37 @@ namespace Gade_1B_part_1
 
             if ((direction == Character.MovementEnum.Up) && (map.Player.vision[(int)Character.VisionEnum.North] is EmptyTile))
             {
+                MessageBox.Show("I pressed up and it worked");
+                
                 Map.Player.Move(direction);
+                return true;
             }
 
-            if ((direction == Character.MovementEnum.Down) && (map.Player.vision[(int)Character.VisionEnum.South] is EmptyTile))
+            else if ((direction == Character.MovementEnum.Down) && (map.Player.vision[(int)Character.VisionEnum.South] is EmptyTile))
             {
                 Map.Player.Move(direction);
+                return true;
             }
 
-            if ((direction == Character.MovementEnum.Left) && (map.Player.vision[(int)Character.VisionEnum.West] is EmptyTile))
+            else if((direction == Character.MovementEnum.Left) && (map.Player.vision[(int)Character.VisionEnum.West] is EmptyTile))
             {
                 Map.Player.Move(direction);
+                return true;
             }
 
-            if ((direction == Character.MovementEnum.Right) && (map.Player.vision[(int)Character.VisionEnum.East] is EmptyTile))
+            else if((direction == Character.MovementEnum.Right) && (map.Player.vision[(int)Character.VisionEnum.East] is EmptyTile))
             {
                 Map.Player.Move(direction);
+                return true;
             }
 
             else if ((direction == Character.MovementEnum.NoMovement) && (map.Player.vision[4] is not EmptyTile))
             {
                 Map.Player.Move(direction);
-                
+                return true;
+
             }
-            return false;
+            else return false;
 
         }
 

@@ -59,6 +59,7 @@ namespace Gade_1B_part_1
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            
             Game = gameEngine.Map;
             UpdateMap(Game);
 
@@ -101,11 +102,13 @@ namespace Gade_1B_part_1
 
           if (inRange)
           {
-                MessageBox.Show("I am Attacking!!!!!");
+                //MessageBox.Show("I am Attacking!!!!!");
+                redOutput.Lines.Append("I have attacked!");
           }
             else
             {
-                MessageBox.Show("I can not Attack????");
+                //MessageBox.Show("I can not Attack????");
+                redOutput.Lines.Append("I cannot attack?");
             }
 
 
