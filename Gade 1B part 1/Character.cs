@@ -42,10 +42,10 @@ namespace Gade_1B_part_1
             Right,
         }
 
-        //used with vision array
+        //used with vision 
         public enum VisionEnum
         {
-            North = 0,
+            North,
             South,
             West,  
             East

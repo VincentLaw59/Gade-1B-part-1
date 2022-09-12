@@ -33,27 +33,27 @@ namespace Gade_1B_part_1
         {
 
 
-            if ((direction == Character.MovementEnum.Up) && (Map.Player.vision[(int)Character.VisionEnum.North] is EmptyTile))
+            if ((direction == Character.MovementEnum.Up) && (map.Player.vision[(int)Character.VisionEnum.North] is EmptyTile))
             {
                 Map.Player.Move(direction);
             }
 
-            if ((direction == Character.MovementEnum.Down) && (Map.Player.vision[(int)Character.VisionEnum.South] is EmptyTile))
+            if ((direction == Character.MovementEnum.Down) && (map.Player.vision[(int)Character.VisionEnum.South] is EmptyTile))
             {
                 Map.Player.Move(direction);
             }
 
-            if ((direction == Character.MovementEnum.Left) && (Map.Player.vision[(int)Character.VisionEnum.West] is EmptyTile))
+            if ((direction == Character.MovementEnum.Left) && (map.Player.vision[(int)Character.VisionEnum.West] is EmptyTile))
             {
                 Map.Player.Move(direction);
             }
 
-            if ((direction == Character.MovementEnum.Right) && (Map.Player.vision[(int)Character.VisionEnum.East] is EmptyTile))
+            if ((direction == Character.MovementEnum.Right) && (map.Player.vision[(int)Character.VisionEnum.East] is EmptyTile))
             {
                 Map.Player.Move(direction);
             }
 
-            else if ((direction == Character.MovementEnum.NoMovement) && (Map.Player.vision[4] is not EmptyTile))
+            else if ((direction == Character.MovementEnum.NoMovement) && (map.Player.vision[4] is not EmptyTile))
             {
                 Map.Player.Move(direction);
                 
