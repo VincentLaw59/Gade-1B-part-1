@@ -33,22 +33,22 @@ namespace Gade_1B_part_1
         {
 
 
-            if ((direction == Character.MovementEnum.Up) && (Map.Player.vision[0] is EmptyTile))
+            if ((direction == Character.MovementEnum.Up) && (Map.Player.vision[(int)Character.VisionEnum.North] is EmptyTile))
             {
                 Map.Player.Move(direction);
             }
 
-            if ((direction == Character.MovementEnum.Down) && (Map.Player.vision[1] is EmptyTile))
+            if ((direction == Character.MovementEnum.Down) && (Map.Player.vision[(int)Character.VisionEnum.South] is EmptyTile))
             {
                 Map.Player.Move(direction);
             }
 
-            if ((direction == Character.MovementEnum.Left) && (Map.Player.vision[2] is EmptyTile))
+            if ((direction == Character.MovementEnum.Left) && (Map.Player.vision[(int)Character.VisionEnum.West] is EmptyTile))
             {
                 Map.Player.Move(direction);
             }
 
-            if ((direction == Character.MovementEnum.Right) && (Map.Player.vision[3] is EmptyTile))
+            if ((direction == Character.MovementEnum.Right) && (Map.Player.vision[(int)Character.VisionEnum.East] is EmptyTile))
             {
                 Map.Player.Move(direction);
             }

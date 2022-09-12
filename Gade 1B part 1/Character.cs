@@ -42,6 +42,15 @@ namespace Gade_1B_part_1
             Right,
         }
 
+        //used with vision array
+        public enum VisionEnum
+        {
+            North = 0,
+            South,
+            West,  
+            East
+        }
+
         public virtual void Attack(Character target)
         {
             target.hp = target.hp - damage;

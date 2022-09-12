@@ -66,20 +66,20 @@ namespace Gade_1B_part_1
                 {
                     if (map[k,j] is Hero)
                     {
-                        Player.vision[0] = map[k + 1, j];
-                        Player.vision[1] = map[k - 1, j];
-                        Player.vision[2] = map[k, j + 1];
-                        Player.vision[3] = map[k, j - 1];
+                        Player.vision[(int)Character.VisionEnum.North] = map[k + 1, j];
+                        Player.vision[(int)Character.VisionEnum.South] = map[k - 1, j];
+                        Player.vision[(int)Character.VisionEnum.West] = map[k, j - 1];
+                        Player.vision[(int)Character.VisionEnum.East] = map[k, j + 1];
 
                     }
                     else if (map[k,j] is Enemy)
                     {
                         for (int m = 0; m < enemies.Length; m++)
                         {
-                            enemies[m].vision[0] = map[k + 1, j];
-                            enemies[m].vision[1] = map[k - 1, j];
-                            enemies[m].vision[2] = map[k, j + 1];
-                            enemies[m].vision[3] = map[k, j - 1];
+                            enemies[m].vision[(int)Character.VisionEnum.North] = map[k + 1, j];
+                            enemies[m].vision[(int)Character.VisionEnum.South] = map[k - 1, j];
+                            enemies[m].vision[(int)Character.VisionEnum.West] = map[k, j + 1];
+                            enemies[m].vision[(int)Character.VisionEnum.East] = map[k, j - 1];
                         }
                     }
                 }
