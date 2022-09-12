@@ -64,7 +64,7 @@ namespace Gade_1B_part_1
             //Generate Map
             Game = gameEngine.Map;
             UpdateMap(Game);
-            
+            RedOutput.Text = gameEngine.Map.Player.ToString();
 
             for (int i = 0; i < Game.Enemies.Length; i++)
             {

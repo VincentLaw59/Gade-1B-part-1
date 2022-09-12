@@ -32,45 +32,37 @@ namespace Gade_1B_part_1
         }
         public bool MovePlayer(Character.MovementEnum direction)
         {
-
-
-            if ((direction == Character.MovementEnum.Up) && (map.player.vision[(int)Character.VisionEnum.West] is EmptyTile))
+            if(Map.Player.ReturnMove(direction) == direction)
             {
-                //Holds where the player is currently
-
-                //Player moves to new pos
                 Map.player.Move(direction);
-                //Map.gameMap[temp.X, temp.Y] = new EmptyTile(temp.X, temp.Y);
+                
+                switch(direction)
+                {
+                    case Character.MovementEnum.Up:
+                        Map.gameMap[Map.Player.Y + 1, Map.Player.X] = new EmptyTile(Map.Player.X, Map.Player.Y);
+                        break;
+
+                    case Character.MovementEnum.Down:
+                        Map.gameMap[Map.Player.Y - 1, Map.Player.X] = new EmptyTile(Map.Player.X, Map.Player.Y);
+                        break;
+
+                    case Character.MovementEnum.Left:
+                        Map.gameMap[Map.Player.Y, Map.Player.X + 1] = new EmptyTile(Map.Player.X, Map.Player.Y);
+                        break;
+
+                    case Character.MovementEnum.Right:
+                        Map.gameMap[Map.Player.Y, Map.Player.X - 1] = new EmptyTile(Map.Player.X, Map.Player.Y);
+                        break;
+
+                    
+                }
 
 
                 return true;
-            }
-
-            else if ((direction == Character.MovementEnum.Down) && (map.player.vision[(int)Character.VisionEnum.East] is EmptyTile))
-            {
-                Map.player.Move(direction);
-                return true;
-            }
-
-            else if ((direction == Character.MovementEnum.Left) && (map.player.vision[(int)Character.VisionEnum.North] is EmptyTile))
-            {
-                Map.player.Move(direction);
-                return true;
-            }
-
-            else if ((direction == Character.MovementEnum.Right) && (map.player.vision[(int)Character.VisionEnum.South] is EmptyTile))
-            {
-                Map.player.Move(direction);
-                return true;
-            }
-
-            else if ((direction == Character.MovementEnum.NoMovement) && (map.player.vision[4] is not EmptyTile))
-            {
-                Map.player.Move(direction);
-                return true;
-
             }
             else return false;
+           
+
 
         }
 
