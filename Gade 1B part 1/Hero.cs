@@ -12,7 +12,6 @@ namespace Gade_1B_part_1
         public Hero(int x, int y, int hp, int maxHp, int damage, char character): base(x, y, character) 
         {
             damage = 2;
-
         }
 
         public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
@@ -53,14 +52,17 @@ namespace Gade_1B_part_1
 
         public override string ToString()
         {
-            string hp = "";
-            string maxHp = "";
-            string damage = "2";
-            string x = "";
-            string y = "";
+            //string hp = "";
+            //string maxHp = "";
+            //string damage = "2";
+            //string x = "";
+            //string y = "";
                                  
 
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            return "Player Stats: \n" + "HP: " + hp + "/" + maxHp +
+                "\n Damage: " + damage + "[" + x + "," + y + "]";
         }
 
        

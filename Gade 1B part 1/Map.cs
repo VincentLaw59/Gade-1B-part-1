@@ -41,7 +41,8 @@ namespace Gade_1B_part_1
                     }
                 }
             }
-                    enemies = new Enemy[amtEnemies];
+            enemies = new Enemy[amtEnemies];
+
             //Spawn Hero
             Player = (Hero)Create(Tile.TileType.Hero);
             map[Player.X, Player.Y] = Player;

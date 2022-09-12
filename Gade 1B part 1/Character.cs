@@ -22,20 +22,17 @@ namespace Gade_1B_part_1
         public char C { get { return c; } set { c = value; } }
         public bool IsDead { get { return isDead; } set { isDead = value; } }
         
-        
         public Character(int x, int y, char character) : base(x, y)
         {
          
         }
                        
-
         public string[] characterVision = new string[]
         {
             "NoMovement", "Up", "Down", "Left", "Right"
             
         };
             
-
         public enum MovementEnum
         {
             NoMovement,
@@ -50,25 +47,25 @@ namespace Gade_1B_part_1
             target.hp = target.hp - damage;
         }
 
+        //public bool IsDead()
+        //{
+        //  if (hp <= 0)
+        //      return True;
+        //  else return False;
+        //}
+
         public virtual bool CheckRange(Character target)
         {
             if (DistanceTo(target) <= 1)
-            {
-                Attack(target);
                 return true;
-            }
-            else
-            {
-                return false;
-            }
+            else return false;
         }
 
         private int DistanceTo(Character target)
         {
-
-            int distanceX = target.X - this.X;
-            int distanceY = target.Y - this.Y;
-            return Math.Abs(distanceX + distanceY);
+            int distanceX = Math.Abs(target.X - this.X);
+            int distanceY = Math.Abs(target.Y - this.Y);
+            return distanceX + distanceY;
         }
 
 

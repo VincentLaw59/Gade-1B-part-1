@@ -8,7 +8,6 @@ namespace Gade_1B_part_1
 {
     class SwampCreature : Enemy
     {
-        Random rand = new Random();
         public SwampCreature(int x, int y, int hp, int maxHp, int damage, char character): base(x, y, character)
         {
             hp = 10;
@@ -17,12 +16,13 @@ namespace Gade_1B_part_1
 
         public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
         {
-            int generateDirection = rand.Next(0, 5);
-
-            while (vision[generateDirection] is not EmptyTile) //While chosen direction is not empty
+            int generateDirection;
+            do
             {
-                generateDirection = rand.Next(1, 6);
+                generateDirection = random.Next(0, 5);
             }
+            while (vision[generateDirection] is not EmptyTile); //While chosen direction is not empty
+
             return (MovementEnum)generateDirection;
         }
         
