@@ -30,7 +30,9 @@ namespace Gade_1B_part_1
                     {
                         Game.gameMap[k, i] = new EmptyTile(k, i);
                     }
-                    
+
+                    VerticalEntity = Game.gameMap[k, i];
+
                     if (VerticalEntity is EmptyTile)
                     {
                         verticalString += "." + "\t";
