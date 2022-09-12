@@ -2,15 +2,13 @@ namespace Gade_1B_part_1
 {
     public partial class frmGame : Form
     {
-        private static GameEngine directionMap = new GameEngine();
-        //private GameEngine gameEngine;
-        //private static Map? enemyNames;
+        private static GameEngine gameEngine = new GameEngine();
         Map Game;
-        private static Character? enemyCharacter;
-        public static GameEngine DirectionMap { get { return directionMap!; } set { directionMap = value; } }
-        //public static Map? EnemyNames { get { return enemyNames!; } set { enemyNames = value; } }
-        public static Character? EnemyCharacter { get { return enemyCharacter!; } set { EnemyCharacter = value; } }
-        public GameEngine MyGameEngine { get { return directionMap; } set { directionMap = value; } }
+
+
+        public static GameEngine GameEngine { get { return gameEngine; } set { gameEngine = value; } }
+
+        
         public frmGame() 
         {
             InitializeComponent();
@@ -19,6 +17,8 @@ namespace Gade_1B_part_1
         public void UpdateMap(Map Game)
         {
             redPlayArea.Clear();
+            //redPlayArea.AppendText(gameEngine.ToString());
+            
             for (int k = 0; k < Game.MapWidth; k++)
             {
                 string verticalString = "";
@@ -52,60 +52,72 @@ namespace Gade_1B_part_1
                 }
                 redPlayArea.AppendText(verticalString + "\n");
             }
+            
+            
+
+            
         }
 
-
+        
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Game = directionMap.Map;
-            
+            //Generate Map
+            Game = gameEngine.Map;
             UpdateMap(Game);
+            
 
-            for (int i = 0; i < Map.Enemies.Length; i++)
+            for (int i = 0; i < Game.Enemies.Length; i++)
             {
-                CmbListOfEnemies.Items.Add(Map.Enemies[i].ToString());
+                CmbListOfEnemies.Items.Add(Game.Enemies[i].ToString());
             }
 
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            directionMap?.MovePlayer(Character.MovementEnum.Left);
-            UpdateMap(Game);
             
+            gameEngine.MovePlayer(Character.MovementEnum.Left);
+            Game.gameMap[gameEngine.Map.Player.X, gameEngine.Map.Player.Y] = gameEngine.Map.Player; //Up
+            UpdateMap(Game);
+
+
         }
 
         private void bntUp_Click(object sender, EventArgs e)
         {
-            directionMap?.MovePlayer(Character.MovementEnum.Up);
+            gameEngine.MovePlayer(Character.MovementEnum.Up);
+            Game.gameMap[gameEngine.Map.Player.X, gameEngine.Map.Player.Y] = gameEngine.Map.Player;
             UpdateMap(Game);
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            directionMap?.MovePlayer(Character.MovementEnum.Right);
+            gameEngine.MovePlayer(Character.MovementEnum.Right);
+            Game.gameMap[gameEngine.Map.Player.X, gameEngine.Map.Player.Y] = gameEngine.Map.Player;
             UpdateMap(Game);
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            directionMap?.MovePlayer(Character.MovementEnum.Down);
+            gameEngine.MovePlayer(Character.MovementEnum.Down);
+            Game.gameMap[gameEngine.Map.Player.X, gameEngine.Map.Player.Y] = gameEngine.Map.Player;
             UpdateMap(Game);
         }
 
         private void AttackBtn_Click(object sender, EventArgs e)
         {
             if (CmbListOfEnemies.SelectedIndex == -1) return;
-           bool inRange =  MyGameEngine.Map.Player.CheckRange(Map.Enemies[CmbListOfEnemies.SelectedIndex]);
+           bool inRange =  gameEngine.Map.player.CheckRange(Game.Enemies[CmbListOfEnemies.SelectedIndex]);
 
           if (inRange)
           {
-                MessageBox.Show("I am Attacking!!!!!");
-                MyGameEngine.Map.Player.Attack(Map.Enemies[CmbListOfEnemies.SelectedIndex]);
+                //MessageBox.Show("I am Attacking!!!!!");
+                redOutput.Lines.Append("I have attacked!");
           }
             else
             {
-                MessageBox.Show("I can not Attack????");
+                //MessageBox.Show("I can not Attack????");
+                redOutput.Lines.Append("I cannot attack?");
             }
 
 

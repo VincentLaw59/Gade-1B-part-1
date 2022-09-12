@@ -10,6 +10,7 @@ namespace Gade_1B_part_1
     {
 
         private Map map;
+        private Tile temp;
 
         //private static Hero hero = new Hero(5, 5, 20, 20, 2, HeroChar); //fix char
         private static char heroChar = (char)208;
@@ -18,10 +19,10 @@ namespace Gade_1B_part_1
         private static char obstacle = (char)42;
 
         public Map Map { get { return map; } set { map = value; } }
-        public static char HeroChar { get { return heroChar; }}
-        public char Empty { get { return empty; }}
-        public char SwampCreature { get { return swampCreature; }}
-        public char Obstacle { get { return obstacle; }}
+        public static char HeroChar { get { return heroChar; } }
+        public char Empty { get { return empty; } }
+        public char SwampCreature { get { return swampCreature; } }
+        public char Obstacle { get { return obstacle; } }
         //public static Hero Hero { get { return hero; } set { hero = value; } }
 
         public GameEngine()
@@ -33,53 +34,90 @@ namespace Gade_1B_part_1
         {
 
 
-            if ((direction == Character.MovementEnum.Up) && (map.Player.vision[(int)Character.VisionEnum.North] is EmptyTile))
+            if ((direction == Character.MovementEnum.Up) && (map.player.vision[(int)Character.VisionEnum.West] is EmptyTile))
             {
-                Map.Player.Move(direction);
+                //Holds where the player is currently
+
+                //Player moves to new pos
+                Map.player.Move(direction);
+                //Map.gameMap[temp.X, temp.Y] = new EmptyTile(temp.X, temp.Y);
+
+
+                return true;
             }
 
-            if ((direction == Character.MovementEnum.Down) && (map.Player.vision[(int)Character.VisionEnum.South] is EmptyTile))
+            else if ((direction == Character.MovementEnum.Down) && (map.player.vision[(int)Character.VisionEnum.East] is EmptyTile))
             {
-                Map.Player.Move(direction);
+                Map.player.Move(direction);
+                return true;
             }
 
-            if ((direction == Character.MovementEnum.Left) && (map.Player.vision[(int)Character.VisionEnum.West] is EmptyTile))
+            else if ((direction == Character.MovementEnum.Left) && (map.player.vision[(int)Character.VisionEnum.North] is EmptyTile))
             {
-                Map.Player.Move(direction);
+                Map.player.Move(direction);
+                return true;
             }
 
-            if ((direction == Character.MovementEnum.Right) && (map.Player.vision[(int)Character.VisionEnum.East] is EmptyTile))
+            else if ((direction == Character.MovementEnum.Right) && (map.player.vision[(int)Character.VisionEnum.South] is EmptyTile))
             {
-                Map.Player.Move(direction);
+                Map.player.Move(direction);
+                return true;
             }
 
-            else if ((direction == Character.MovementEnum.NoMovement) && (map.Player.vision[4] is not EmptyTile))
+            else if ((direction == Character.MovementEnum.NoMovement) && (map.player.vision[4] is not EmptyTile))
             {
-                Map.Player.Move(direction);
-                
+                Map.player.Move(direction);
+                return true;
+
             }
-            return false;
+            else return false;
 
         }
 
 
         public override string ToString()
-          {
+        {
+            string horizontal = "";
+            for (int k = 0; k < map.MapWidth; k++)
+            {
+                string verticalString = "";
+                for (int i = 0; i < map.MapHeight; i++)
+                {
+                    Tile VerticalEntity = map.gameMap[k, i];
 
-            return base.ToString()!;
-          }
+                    if (VerticalEntity == null)
+                    {
+                        map.gameMap[k, i] = new EmptyTile(k, i);
+                    }
 
+                    VerticalEntity = map.gameMap[k, i];
 
+                    if (VerticalEntity is EmptyTile)
+                    {
+                        verticalString += "." + "\t";
+                    }
+                    else if (VerticalEntity is Enemy)
+                    {
+                        verticalString += "E" + "\t";
+                    }
+                    else if (VerticalEntity is Hero)
+                    {
+                        verticalString += "H" + "\t";
+                    }
+                    else if (VerticalEntity is Obstacle)
+                    {
+                        verticalString += "X" + "\t";
+                    }
+                    
+                }
+                horizontal = verticalString + "\n";
+            }
+            return horizontal;
 
-           
-           
-            
+        }
 
     }
-
-
 }
-
 
 
 
