@@ -3,14 +3,14 @@ namespace Gade_1B_part_1
     public partial class frmGame : Form
     {
         private static GameEngine directionMap = new GameEngine();
-        private static GameEngine? gameEngine;
+        //private GameEngine gameEngine;
         //private static Map? enemyNames;
         Map Game;
         private static Character? enemyCharacter;
         public static GameEngine DirectionMap { get { return directionMap!; } set { directionMap = value; } }
         //public static Map? EnemyNames { get { return enemyNames!; } set { enemyNames = value; } }
         public static Character? EnemyCharacter { get { return enemyCharacter!; } set { EnemyCharacter = value; } }
-        public static GameEngine? MyGameEngine { get { return gameEngine; } set { gameEngine = value; } }
+        public GameEngine MyGameEngine { get { return directionMap; } set { directionMap = value; } }
         public frmGame() 
         {
             InitializeComponent();
@@ -60,6 +60,12 @@ namespace Gade_1B_part_1
             Game = directionMap.Map;
             
             UpdateMap(Game);
+
+            for (int i = 0; i < Map.Enemies.Length; i++)
+            {
+                CmbListOfEnemies.Items.Add(Map.Enemies[i].ToString());
+            }
+
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
@@ -89,15 +95,29 @@ namespace Gade_1B_part_1
 
         private void AttackBtn_Click(object sender, EventArgs e)
         {
-            MyGameEngine?.Map.Player.CheckRange(Map.Enemies[EnemyList.SelectedIndex]);
+            if (CmbListOfEnemies.SelectedIndex == -1) return;
+           bool inRange =  MyGameEngine.Map.Player.CheckRange(Map.Enemies[CmbListOfEnemies.SelectedIndex]);
+
+          if (inRange)
+          {
+                MessageBox.Show("I am Attacking!!!!!");
+          }
+            else
+            {
+                MessageBox.Show("I can not Attack????");
+            }
+
+
         }
 
         private void ListOfEnemies_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < Map.Enemies.Length; i++)
-            {
-                EnemyList.Items.Add(Map.Enemies[i].ToString());
-            }
+            
+        }
+
+        private void ListOfEnemies_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
         }
 
         //private void EnemyList_SelectedIndexChanged(object sender, EventArgs e)

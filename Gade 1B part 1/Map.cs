@@ -74,7 +74,7 @@ namespace Gade_1B_part_1
                     }
                     else if (map[k,j] is Enemy)
                     {
-                        for (int m = 0; m < enemies.Length; m++)
+                        for (int m = 0; m < enemies!.Length; m++)
                         {
                             enemies[m].vision[(int)Character.VisionEnum.North] = map[k + 1, j];
                             enemies[m].vision[(int)Character.VisionEnum.South] = map[k - 1, j];
