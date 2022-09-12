@@ -64,7 +64,7 @@ namespace Gade_1B_part_1
             //Generate Map
             Game = gameEngine.Map;
             UpdateMap(Game);
-            
+            redOutput.Text = gameEngine.Map.player.ToString();
 
             for (int i = 0; i < Game.Enemies.Length; i++)
             {
@@ -79,7 +79,7 @@ namespace Gade_1B_part_1
             gameEngine.MovePlayer(Character.MovementEnum.Left);
             Game.gameMap[gameEngine.Map.Player.X, gameEngine.Map.Player.Y] = gameEngine.Map.Player; //Up
             UpdateMap(Game);
-
+            
 
         }
 
@@ -106,18 +106,19 @@ namespace Gade_1B_part_1
 
         private void AttackBtn_Click(object sender, EventArgs e)
         {
-            if (CmbListOfEnemies.SelectedIndex == -1) return;
+           // if (CmbListOfEnemies.SelectedIndex == -1) return;
            bool inRange =  gameEngine.Map.player.CheckRange(Game.Enemies[CmbListOfEnemies.SelectedIndex]);
 
           if (inRange)
           {
                 //MessageBox.Show("I am Attacking!!!!!");
-                redOutput.Lines.Append("I have attacked!");
+                redOutput.Lines.Append("I have attacked!" + "\n" + Game.Enemies[CmbListOfEnemies.SelectedIndex].ToString());
+                gameEngine.Map.Player.Attack(Game.Enemies[CmbListOfEnemies.SelectedIndex]);
           }
             else
             {
                 //MessageBox.Show("I can not Attack????");
-                redOutput.Lines.Append("I cannot attack?");
+                redOutput.Lines.Append("I cannot attack?" + "\n" + Game.Enemies[CmbListOfEnemies.SelectedIndex].ToString());
             }
 
 

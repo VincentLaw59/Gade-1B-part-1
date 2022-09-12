@@ -21,7 +21,8 @@ namespace Gade_1B_part_1
             Hero,
             Enemy,
             Gold,
-            Weapons
+            Weapons,
+            EmptyTile
         }
 
         //Constructor
