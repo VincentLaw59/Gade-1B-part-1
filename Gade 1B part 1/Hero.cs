@@ -14,28 +14,31 @@ namespace Gade_1B_part_1
             damage = 2;
         }
 
+       
+
         public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
         {
             // If 
-            if(MovementEnum.Up.ToString() == characterVision[1])
+            int index = 1;
+            if(Convert.ToInt32(MovementEnum.Up) == Convert.ToInt32(vision[index]))
             {
                 //Move up
                 return MovementEnum.Up;
             }
-
-            if(MovementEnum.Down.ToString() == characterVision[2])
+            index = 2;
+            if(Convert.ToInt32(MovementEnum.Up) == Convert.ToInt32(vision[index]))
             {
                 //Move down
                 return MovementEnum.Down;
             }
-
-            if(MovementEnum.Left.ToString() == characterVision[3])
+            index = 3;
+            if(Convert.ToInt32(MovementEnum.Up) == Convert.ToInt32(vision[index]))
             {
                 //Move left
                 return MovementEnum.Left;
             }
-
-            if(MovementEnum.Right.ToString() == characterVision[4])
+            index = 4;
+            if(Convert.ToInt32(MovementEnum.Up) == Convert.ToInt32(vision[index]))
             {
                 //Move right
                 return MovementEnum.Right;
