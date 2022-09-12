@@ -28,7 +28,8 @@ namespace Gade_1B_part_1
             mapWidth = rand.Next(minWidth, maxWidth);
             mapHeight = rand.Next(minHeight, maxHeight);
 
-            map = new Tile[mapWidth,mapHeight];
+            map = new Tile[mapWidth, mapHeight];
+            enemies = new Enemy[amtEnemies];
 
             //Spawn Border
             for (int k = 0; k < mapWidth; k++)
@@ -41,7 +42,6 @@ namespace Gade_1B_part_1
                     }
                 }
             }
-            enemies = new Enemy[amtEnemies];
 
             //Spawn Hero
             Player = (Hero)Create(Tile.TileType.Hero);
@@ -50,27 +50,28 @@ namespace Gade_1B_part_1
             //Spawn enemies
             for (int p = 0; p < enemies.Length; p++)
             {
-                enemies[p] = (Enemy)Create(Tile.TileType.Enemy);
+                enemies[p] = (SwampCreature)Create(Tile.TileType.Enemy);
                 enemies[p].HP = 10;
                 map[enemies[p].X, enemies[p].Y] = enemies[p];
             }
 
             UpdateVision();
-
         }
 
         public void UpdateVision()
         {
-            Player.vision[(int)Character.VisionEnum.North] = map[Player.Y - 1, Player.X];
-            Player.vision[(int)Character.VisionEnum.South] = map[Player.Y + 1, Player.X];
-            Player.vision[(int)Character.VisionEnum.West] = map[Player.Y, Player.X - 1];
-            Player.vision[(int)Character.VisionEnum.East] = map[Player.Y, Player.X + 1];
+            Player.vision[(int)Character.VisionEnum.North] = map[Player.X, Player.Y - 1];      
+            Player.vision[(int)Character.VisionEnum.South] = map[Player.X, Player.Y + 1];
+            Player.vision[(int)Character.VisionEnum.West] = map[Player.X - 1, Player.Y];
+            Player.vision[(int)Character.VisionEnum.East] = map[Player.X + 1, Player.Y];
+            
             for (int m = 0; m < enemies.Length; m++)
             {
-                enemies[m].vision[(int)Character.VisionEnum.North] = map[enemies[m].Y - 1, enemies[m].X];
-                enemies[m].vision[(int)Character.VisionEnum.South] = map[enemies[m].Y + 1, enemies[m].X];
-                enemies[m].vision[(int)Character.VisionEnum.West] = map[enemies[m].Y, enemies[m].X - 1];
-                enemies[m].vision[(int)Character.VisionEnum.East] = map[enemies[m].Y, enemies[m].X + 1];
+                enemies[m].vision[(int)Character.VisionEnum.North] = map[enemies[m].X, enemies[m].Y - 1];
+                enemies[m].vision[(int)Character.VisionEnum.South] = map[enemies[m].X, enemies[m].Y + 1];
+                enemies[m].vision[(int)Character.VisionEnum.West] = map[enemies[m].X - 1, enemies[m].Y];
+                enemies[m].vision[(int)Character.VisionEnum.East] = map[enemies[m].X + 1, enemies[m].Y];
+                
             }            
         }
 
@@ -119,8 +120,8 @@ namespace Gade_1B_part_1
             int xCoord, yCoord;
             do
             {
-                xCoord = rand.Next(1, mapWidth - 1);
-                yCoord = rand.Next(1, mapHeight - 1);
+                xCoord = rand.Next(1, mapWidth - 2);
+                yCoord = rand.Next(1, mapHeight - 2);
             }
             while (map[xCoord, yCoord] != null);
 
@@ -134,6 +135,7 @@ namespace Gade_1B_part_1
                 return sc;
             }
             else return new EmptyTile(xCoord, yCoord);
+            
         }
 
         private void FillEnemyArray(Enemy e)

@@ -2,15 +2,17 @@ namespace Gade_1B_part_1
 {
     public partial class frmGame : Form
     {
-        private static GameEngine directionMap = new GameEngine();
+        private static GameEngine gameEngine = new GameEngine();
         //private GameEngine gameEngine;
         //private static Map? enemyNames;
         Map Game;
-        private static Character? enemyCharacter;
-        public static GameEngine DirectionMap { get { return directionMap!; } set { directionMap = value; } }
+        //private static Character? enemyCharacter;
+
+        public static GameEngine GameEngine { get { return gameEngine; } set { gameEngine = value; } }
         //public static Map? EnemyNames { get { return enemyNames!; } set { enemyNames = value; } }
-        public static Character? EnemyCharacter { get { return enemyCharacter!; } set { EnemyCharacter = value; } }
-        public GameEngine MyGameEngine { get { return directionMap; } set { directionMap = value; } }
+        //public static Character EnemyCharacter { get { return enemyCharacter!; } set { enemyCharacter = value; } }
+        //public GameEngine MyGameEngine { get { return gameEngine; } set { gameEngine = value; } }
+        
         public frmGame() 
         {
             InitializeComponent();
@@ -57,46 +59,45 @@ namespace Gade_1B_part_1
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Game = directionMap.Map;
-            
+            Game = gameEngine.Map;
             UpdateMap(Game);
 
-            for (int i = 0; i < Map.Enemies.Length; i++)
+            for (int i = 0; i < Game.Enemies.Length; i++)
             {
-                CmbListOfEnemies.Items.Add(Map.Enemies[i].ToString());
+                CmbListOfEnemies.Items.Add(Game.Enemies[i].ToString());
             }
 
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            directionMap.MovePlayer(Character.MovementEnum.Left);
+            gameEngine.MovePlayer(Character.MovementEnum.Left);
             UpdateMap(Game);
             
         }
 
         private void bntUp_Click(object sender, EventArgs e)
         {
-            directionMap?.MovePlayer(Character.MovementEnum.Up);
+            gameEngine?.MovePlayer(Character.MovementEnum.Up);
             UpdateMap(Game);
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            directionMap?.MovePlayer(Character.MovementEnum.Right);
+            gameEngine?.MovePlayer(Character.MovementEnum.Right);
             UpdateMap(Game);
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            directionMap?.MovePlayer(Character.MovementEnum.Down);
+            gameEngine?.MovePlayer(Character.MovementEnum.Down);
             UpdateMap(Game);
         }
 
         private void AttackBtn_Click(object sender, EventArgs e)
         {
             if (CmbListOfEnemies.SelectedIndex == -1) return;
-           bool inRange =  MyGameEngine.Map.Player.CheckRange(Map.Enemies[CmbListOfEnemies.SelectedIndex]);
+           bool inRange =  gameEngine.Map.Player.CheckRange(Game.Enemies[CmbListOfEnemies.SelectedIndex]);
 
           if (inRange)
           {

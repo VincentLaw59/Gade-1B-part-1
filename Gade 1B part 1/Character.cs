@@ -45,7 +45,7 @@ namespace Gade_1B_part_1
         //used with vision 
         public enum VisionEnum
         {
-            North,
+            North = 0,
             South,
             West,  
             East
