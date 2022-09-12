@@ -101,6 +101,7 @@ namespace Gade_1B_part_1
           if (inRange)
           {
                 MessageBox.Show("I am Attacking!!!!!");
+                MyGameEngine.Map.Player.Attack(Map.Enemies[CmbListOfEnemies.SelectedIndex]);
           }
             else
             {
