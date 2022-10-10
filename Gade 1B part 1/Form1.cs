@@ -3,7 +3,7 @@ namespace Gade_1B_part_1
     public partial class frmGame : Form
     {
         private static GameEngine gameEngine = new GameEngine();
-        Map Game;
+        
 
 
         public static GameEngine GameEngine { get { return gameEngine; } set { gameEngine = value; } }
@@ -13,113 +13,70 @@ namespace Gade_1B_part_1
         {
             InitializeComponent();
         }
-
-        public void UpdateMap(Map Game)
-        {
-            redPlayArea.Clear();
-            //redPlayArea.AppendText(gameEngine.ToString());
-            
-            for (int k = 0; k < Game.MapWidth; k++)
-            {
-                string verticalString = "";
-                for (int i = 0; i < Game.MapHeight; i++)
-                {
-                    Tile VerticalEntity = Game.gameMap[k, i];
-
-                    if (VerticalEntity == null)
-                    {
-                        Game.gameMap[k, i] = new EmptyTile(k, i);
-                    }
-
-                    VerticalEntity = Game.gameMap[k, i];
-
-                    if (VerticalEntity is EmptyTile)
-                    {
-                        verticalString += "." + "\t";
-                    }
-                    else if (VerticalEntity is Enemy)
-                    {
-                        verticalString += "E" + "\t";
-                    }
-                    else if (VerticalEntity is Hero)
-                    {
-                        verticalString += "H" + "\t";
-                    }
-                    else if (VerticalEntity is Obstacle)
-                    {
-                        verticalString += "X" + "\t";
-                    }
-                }
-                redPlayArea.AppendText(verticalString + "\n");
-            }
-            
-            
-
-            
-        }
-
-        
+               
+                
         private void btnStart_Click(object sender, EventArgs e)
-        {
+       {
             //Generate Map
-            Game = gameEngine.Map;
-            UpdateMap(Game);
-            RedOutput.Text = gameEngine.Map.Player.ToString();
-
-            for (int i = 0; i < Game.Enemies.Length; i++)
+            
+            redPlayArea.Text = GameEngine.Map.ToString();
+            RedOutput.Text = GameEngine.Map.Player.ToString();
+            
+            for (int i = 0; i < GameEngine.Map.Enemies.Length ; i++)
             {
-                CmbListOfEnemies.Items.Add(Game.Enemies[i].ToString());
+                CmbListOfEnemies.Items.Add(GameEngine.Map.Enemies[i].ToString());
             }
 
-        }
+            
+       }
 
         private void btnLeft_Click(object sender, EventArgs e)
-        {
-            
-            gameEngine.MovePlayer(Character.MovementEnum.Left);
-            Game.gameMap[gameEngine.Map.Player.X, gameEngine.Map.Player.Y] = gameEngine.Map.Player; //Up
-            UpdateMap(Game);
-
-
+        {            
+            GameEngine.MovePlayer(Character.MovementEnum.Left);
+            GameEngine.Map.gameMap[GameEngine.Map.Player.Y, GameEngine.Map.Player.X] = GameEngine.Map.Player;
+            redPlayArea.Text = GameEngine.Map.ToString();
+            RedOutput.Text = GameEngine.Map.Player.ToString();            
         }
 
         private void bntUp_Click(object sender, EventArgs e)
         {
-            gameEngine.MovePlayer(Character.MovementEnum.Up);
-            Game.gameMap[gameEngine.Map.Player.X, gameEngine.Map.Player.Y] = gameEngine.Map.Player;
-            UpdateMap(Game);
+            GameEngine.MovePlayer(Character.MovementEnum.Up);
+            GameEngine.Map.gameMap[GameEngine.Map.Player.Y, GameEngine.Map.Player.X] = GameEngine.Map.Player;
+            redPlayArea.Text = GameEngine.Map.ToString();
+            RedOutput.Text = GameEngine.Map.Player.ToString();
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            gameEngine.MovePlayer(Character.MovementEnum.Right);
-            Game.gameMap[gameEngine.Map.Player.X, gameEngine.Map.Player.Y] = gameEngine.Map.Player;
-            UpdateMap(Game);
+            GameEngine.MovePlayer(Character.MovementEnum.Right);
+            GameEngine.Map.gameMap[GameEngine.Map.Player.Y, GameEngine.Map.Player.X] = GameEngine.Map.Player;
+            redPlayArea.Text = GameEngine.Map.ToString();
+            RedOutput.Text = GameEngine.Map.Player.ToString();
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            gameEngine.MovePlayer(Character.MovementEnum.Down);
-            Game.gameMap[gameEngine.Map.Player.X, gameEngine.Map.Player.Y] = gameEngine.Map.Player;
-            UpdateMap(Game);
+            GameEngine.MovePlayer(Character.MovementEnum.Down);
+            GameEngine.Map.gameMap[GameEngine.Map.Player.Y, GameEngine.Map.Player.X] = GameEngine.Map.Player;
+            redPlayArea.Text = GameEngine.Map.ToString();
+            RedOutput.Text = GameEngine.Map.Player.ToString();
         }
 
         private void AttackBtn_Click(object sender, EventArgs e)
         {
             if (CmbListOfEnemies.SelectedIndex == -1) return;
-           bool inRange =  gameEngine.Map.player.CheckRange(Game.Enemies[CmbListOfEnemies.SelectedIndex]);
+           bool inRange =  GameEngine.Map.player.CheckRange(GameEngine.Map.Enemies[CmbListOfEnemies.SelectedIndex]);
 
           if (inRange)
           {
-                //MessageBox.Show("I am Attacking!!!!!");
-                redOutput.Lines.Append("I have attacked!");
+                MessageBox.Show("I am Attacking!!!!!");
+                //redOutput.Lines.Append("I have attacked!");
           }
             else
             {
-                //MessageBox.Show("I can not Attack????");
-                redOutput.Lines.Append("I cannot attack?");
+                MessageBox.Show("I can not Attack????");
+                //redOutput.Lines.Append("I cannot attack?");
             }
-
 
         }
 
@@ -132,16 +89,6 @@ namespace Gade_1B_part_1
         {
 
         }
-
-        //private void EnemyList_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    for (int i = 0; i < Map.Enemies.Length; i++)
-        //    {
-        //        EnemyList.Items.Add(Map.Enemies[i].ToString());
-        //    }
-
-
-
-        //}
+                
     }
 }

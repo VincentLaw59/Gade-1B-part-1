@@ -35,7 +35,7 @@ namespace Gade_1B_part_1
             
         public enum MovementEnum
         {
-            NoMovement,
+            NoMovement =0,
             Up,
             Down,
             Left,
@@ -44,25 +44,20 @@ namespace Gade_1B_part_1
 
         //used with vision 
         public enum VisionEnum
-        {
-            North = 0,
+        {   
+            North,
             South,
-            West,  
-            East
+            East,  
+            West
         }
+
 
         public virtual void Attack(Character target)
         {
             target.hp = target.hp - damage;
         }
 
-        //public bool IsDead()
-        //{
-        //  if (hp <= 0)
-        //      return True;
-        //  else return False;
-        //}
-
+        
         public virtual bool CheckRange(Character target)
         {
             if (DistanceTo(target) <= 1)
@@ -82,38 +77,41 @@ namespace Gade_1B_part_1
         {
             switch (move)
             {
-                case MovementEnum.NoMovement: 
+                case MovementEnum.NoMovement:
                     //no movement
                     break;
+
                 case MovementEnum.Up:
                     {
-                        this.X = this.X - 1;
+                        this.Y -= 1;
                         
                     }
                     break;
                 case MovementEnum.Down:
-                    this.X += 1;
-
+                    {
+                        this.Y += 1;
+                    }
+                   
                     break;
                 case MovementEnum.Left:
-                    this.Y -= 1;
-
+                    {
+                        this.X -= 1;
+                    }
+                    
                     break;
                 case MovementEnum.Right:
-                    this.Y += 1;
+                    {
+                        this.X += 1;
+                    }
+                    
+                    break;              
 
-                    break;
-                default:
-                    break;
             }
         }
-
-      
+              
         public abstract MovementEnum ReturnMove(MovementEnum move = 0);
 
-
         public abstract override string ToString();
-        
-
+       
     }
 }

@@ -19,38 +19,69 @@ namespace Gade_1B_part_1
         public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
         {
             // If 
-            int index = 1;
-            if(Convert.ToInt32(MovementEnum.Up) == Convert.ToInt32(vision[index]))
+            
+            if(move == MovementEnum.Up)
             {
-                //Move up
-                return MovementEnum.Up;
-            }
-            index = 2;
-            if(Convert.ToInt32(MovementEnum.Up) == Convert.ToInt32(vision[index]))
-            {
-                //Move down
-                return MovementEnum.Down;
-            }
-            index = 3;
-            if(Convert.ToInt32(MovementEnum.Up) == Convert.ToInt32(vision[index]))
-            {
-                //Move left
-                return MovementEnum.Left;
-            }
-            index = 4;
-            if(Convert.ToInt32(MovementEnum.Up) == Convert.ToInt32(vision[index]))
-            {
-                //Move right
-                return MovementEnum.Right;
+                if (vision[0] is EmptyTile)
+                {
+                    //Move up
+                    return move;
+                }
+                else
+                {
+                    move = MovementEnum.NoMovement;
+                    return move;
+                }
+
             }
 
+            else if (move == MovementEnum.Down)
+            {
+                if (vision[1] is EmptyTile)
+                {
+                    //Move down
+                    return move;
+                }
+                else
+                {
+                    move = MovementEnum.NoMovement;
+                    return move;
+                }
+            }
+
+            else if (move == MovementEnum.Left)
+            {
+                if (vision[3] is EmptyTile)
+                {
+                    //Move down
+                    return move;
+                }
+                else
+                {
+                    move = MovementEnum.NoMovement;
+                    return move;
+                }
+            }
+
+           else if (move == MovementEnum.Right)
+            {
+                if (vision[2] is EmptyTile)
+                {
+                    //Move down
+                    return move;
+                }
+                else
+                {
+                    move = MovementEnum.NoMovement;
+                    return move;
+                }
+            }
             else
             {
-                move = 0; //No movement
-                return MovementEnum.NoMovement;
+                move = MovementEnum.NoMovement;
             }
-
-            throw new NotImplementedException();
+            return move;
+            
         }
 
         public override string ToString()
@@ -60,7 +91,7 @@ namespace Gade_1B_part_1
             //string damage = "2";
             //string x = "";
             //string y = "";
-                                 
+                      
 
             //throw new NotImplementedException();
 
