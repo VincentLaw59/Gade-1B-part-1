@@ -96,7 +96,7 @@ namespace Gade_1B_part_1
             //throw new NotImplementedException();
 
             return "Player Stats: \n" + "HP: " + hp + "/" + maxHp +
-                "\n Damage: " + damage + "[" + x + "," + y + "]";
+                "\nDamage: " + damage + "[" + x + "," + y + "]";
         }
 
        

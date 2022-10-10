@@ -63,11 +63,33 @@ namespace Gade_1B_part_1
                         map.UpdateVision();
                         break;
 
-                    
-                }
-
-
+            else if ((direction == Character.MovementEnum.Down) && (map.player.vision[(int)Character.VisionEnum.East] is EmptyTile))
+            {
+                Map.player.Move(direction);
+                map.gameMap[map.player.Y + 1, map.player.X] = new EmptyTile(map.player.X, map.player.Y);
                 return true;
+            }
+
+            else if ((direction == Character.MovementEnum.Left) && (map.player.vision[(int)Character.VisionEnum.North] is EmptyTile))
+            {
+                Map.player.Move(direction);
+                map.gameMap[map.player.Y + 1, map.player.X] = new EmptyTile(map.player.X, map.player.Y);
+                return true;
+            }
+
+            else if ((direction == Character.MovementEnum.Right) && (map.player.vision[(int)Character.VisionEnum.South] is EmptyTile))
+            {
+                Map.player.Move(direction);
+                map.gameMap[map.player.Y + 1, map.player.X] = new EmptyTile(map.player.X, map.player.Y);
+                return true;
+            }
+
+            else if ((direction == Character.MovementEnum.NoMovement) && (map.player.vision[4] is not EmptyTile))
+            {
+                Map.player.Move(direction); 
+                map.gameMap[map.player.Y + 1, map.player.X] = new EmptyTile(map.player.X, map.player.Y);
+                return true;
+
             }
             else return true;
            
