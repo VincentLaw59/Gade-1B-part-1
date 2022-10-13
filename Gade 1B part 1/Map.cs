@@ -115,7 +115,7 @@ namespace Gade_1B_part_1
                 for (int k = 0; k < Enemies.Length; k++)
                 {
                     Enemies[k] = new SwampCreature(yCoord, xCoord, 10, 10, 1, (char)190);
-                    MessageBox.Show(Convert.ToString(Enemies[k]));
+                   // MessageBox.Show(Convert.ToString(Enemies[k]));
                 }
             }
             
@@ -139,8 +139,8 @@ namespace Gade_1B_part_1
                 return new Hero(yCoord, xCoord, 10, 10, 2, (char)208);
             else if (type == Tile.TileType.Enemy)
             {
-                SwampCreature sc = new SwampCreature(yCoord, xCoord, 10, 10, 2, (char)190);
-               // MessageBox.Show(Convert.ToString(sc));
+                SwampCreature sc = new SwampCreature(xCoord, yCoord, 10, 10, 2, (char)190);
+                MessageBox.Show(Convert.ToString(sc));
                 FillEnemyArray(sc);
                 return sc;
             }
