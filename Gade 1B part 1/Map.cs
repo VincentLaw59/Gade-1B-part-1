@@ -30,7 +30,7 @@ namespace Gade_1B_part_1
             mapHeight = rand.Next(minHeight, maxHeight);
 
             map = new Tile[mapWidth, mapHeight];
-            enemies = new Enemy[amtEnemies];
+            Enemies = new Enemy[amtEnemies];
 
             //Spawn Border and fill Empty Tiles
             for (int k = 0; k < mapHeight; k++)
@@ -54,12 +54,12 @@ namespace Gade_1B_part_1
 
             
             //Spawn enemies
-            for (int p = 0; p < enemies.Length; p++)
+            for (int p = 0; p < Enemies.Length; p++)
             {
-                enemies[p] = (SwampCreature)Create(Tile.TileType.Enemy);
-                enemies[p].HP = 10;
-                map[enemies[p].X, enemies[p].Y] = enemies[p];
-                MessageBox.Show(Convert.ToString(enemies[p]));
+                Enemies[p] = (SwampCreature)Create(Tile.TileType.Enemy);
+                Enemies[p].HP = 10;
+                map[Enemies[p].Y, Enemies[p].X] = Enemies[p];
+                MessageBox.Show(Convert.ToString(Enemies[p]));
             }
 
             UpdateVision();
@@ -68,19 +68,27 @@ namespace Gade_1B_part_1
 
         public void UpdateVision()  
         {     
-            player.vision[0] = map[player.X, player.Y - 1];      
-            player.vision[1] = map[player.X, player.Y + 1];
-            player.vision[2] = map[player.X + 1, player.Y];
-            player.vision[3] = map[player.X - 1, player.Y];
-            
-            for (int m = 0; m < enemies.Length; m++)
-            {
-                enemies[m].vision[(int)Character.VisionEnum.North] = map[enemies[m].X, enemies[m].Y - 1];
-                enemies[m].vision[(int)Character.VisionEnum.South] = map[enemies[m].X, enemies[m].Y + 1];
-                enemies[m].vision[(int)Character.VisionEnum.West] = map[enemies[m].X - 1, enemies[m].Y];
-                enemies[m].vision[(int)Character.VisionEnum.East] = map[enemies[m].X + 1, enemies[m].Y];
-                
-            }            
+           // player.vision[0] = map[player.X, player.Y - 1];    
+            player.vision[0] = map[player.Y-1, player.X];
+
+            //player.vision[1] = map[player.X, player.Y + 1];
+            player.vision[1] = map[player.Y+1, player.X];
+
+            //player.vision[2] = map[player.X + 1, player.Y];
+            player.vision[2] = map[player.Y, player.X+1];
+
+           // player.vision[3] = map[player.X - 1, player.Y];
+            player.vision[3] = map[player.Y, player.X-1];
+
+
+            //for (int m = 0; m < enemies.Length; m++)
+            //{
+            //    enemies[m].vision[(int)Character.VisionEnum.North] = map[enemies[m].X, enemies[m].Y - 1];
+            //    enemies[m].vision[(int)Character.VisionEnum.South] = map[enemies[m].X, enemies[m].Y + 1];
+            //    enemies[m].vision[(int)Character.VisionEnum.West] = map[enemies[m].X - 1, enemies[m].Y];
+            //    enemies[m].vision[(int)Character.VisionEnum.East] = map[enemies[m].X + 1, enemies[m].Y];
+
+            //}            
         }
 
         private Tile DeleteThisCreate(Tile.TileType type)
@@ -139,7 +147,7 @@ namespace Gade_1B_part_1
                 return new Hero(yCoord, xCoord, 10, 10, 2, (char)208);
             else if (type == Tile.TileType.Enemy)
             {
-                SwampCreature sc = new SwampCreature(xCoord, yCoord, 10, 10, 2, (char)190);
+                SwampCreature sc = new SwampCreature(yCoord, xCoord, 10, 10, 2, (char)190);
                 MessageBox.Show(Convert.ToString(sc));
                 FillEnemyArray(sc);
                 return sc;
@@ -150,11 +158,11 @@ namespace Gade_1B_part_1
 
         private void FillEnemyArray(Enemy e)
         {
-            for (int i = 0; i < enemies.Length; i++)
+            for (int i = 0; i < Enemies.Length; i++)
             {
-                if (enemies[i] is null)
+                if (Enemies[i] is null)
                 {
-                    enemies[i] = e;
+                    Enemies[i] = e;
                     return;
                 }
             }
