@@ -4,75 +4,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gade_1B_part_1
+namespace GADE6112_POE
 {
-    public class GameEngine
+    internal class GameEngine
     {
+        private Map gameMap;
 
-        private Map map;
 
+        public Map GameMap { get { return gameMap; } set { gameMap = value; } }
 
-        //private static Hero hero = new Hero(5, 5, 20, 20, 2, HeroChar); //fix char
-        private static char heroChar = (char)208;
-        private static char empty = (char)44;
-        private static char swampCreature = (char)199;
-        private static char obstacle = (char)42;
-        
-
-        public Map Map { get { return map; } set { map = value; } }
-        public static char HeroChar { get { return heroChar; } }
-        public char Empty { get { return empty; } }
-        public char SwampCreature { get { return swampCreature; } }
-        public char Obstacle { get { return obstacle; } }
-        //public static Hero Hero { get { return hero; } set { hero = value; } }
 
         public GameEngine()
         {
-            map = new Map(10, 10, 10, 10, 2); 
+            gameMap = new Map(5, 15, 5, 15, 3);
         }
+
         public bool MovePlayer(Character.MovementEnum direction)
         {
-            if (Map.Player.ReturnMove(direction) == direction)
-            {
-                Map.player.Move(direction);
+                int old_x = gameMap.Player.X;
+                int old_y = gameMap.Player.Y;
 
-                switch (direction)
-                {
-                    case Character.MovementEnum.NoMovement:
-                        Map.gameMap[Map.Player.Y, Map.Player.X] = new EmptyTile(Map.Player.X, Map.Player.Y);
-                        // map.UpdateVision();
-                        break;
+                gameMap.UpdateVision();
+                gameMap.player.Move(gameMap.Player.ReturnMove(direction));
 
-                    case Character.MovementEnum.Up:
-                        Map.gameMap[Map.Player.Y + 1, Map.Player.X] = new EmptyTile(Map.Player.X, Map.Player.Y);
-                        map.UpdateVision();
-                        break;
+                //Turn previous spot into empty space
+                gameMap.gameMap[old_x, old_y] = new EmptyTile(old_x, old_y);
+                gameMap.UpdateVision();
+                return true;
 
-                    case Character.MovementEnum.Down:
-                        Map.gameMap[Map.Player.Y - 1, Map.Player.X] = new EmptyTile(Map.Player.X, Map.Player.Y);
-                        map.UpdateVision();
-                        break;
-
-                    case Character.MovementEnum.Left:
-                        Map.gameMap[Map.Player.Y, Map.Player.X + 1] = new EmptyTile(Map.Player.X, Map.Player.Y);
-                        map.UpdateVision();
-                        break;
-
-                    case Character.MovementEnum.Right:
-                        Map.gameMap[Map.Player.Y, Map.Player.X - 1] = new EmptyTile(Map.Player.X, Map.Player.Y);
-                        map.UpdateVision();
-                        break;
-                }
-                                   
-            }
-
-            return true;
         }
-              
+
+        public void AttackEnemy(Enemy target)
+        {
+            if (target != null)
+            {
+                if (GameMap.Player.CheckRange(target))
+                {
+                    GameMap.Player.Attack(target);
+                    MessageBox.Show("attacked enemy");
+                }
+                else MessageBox.Show("Not in range to attack");
+
+                if (target.isDead() == true)
+                {
+                    gameMap.gameMap[target.X, target.Y] = new EmptyTile(target.X, target.Y);
+                    MessageBox.Show("enemy died");
+                }
+            }
+        }
     }
 }
-
-
-
-    
-

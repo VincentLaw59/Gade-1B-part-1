@@ -4,27 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gade_1B_part_1
+namespace GADE6112_POE
 {
-    class SwampCreature : Enemy
+    internal class SwampCreature : Enemy
     {
-        public SwampCreature(int x, int y, int hp, int maxHp, int damage, char character): base(x, y, character)
+        public SwampCreature(int x, int y, char character = 'S', int damage = 1, int startHP = 10) : base(x, y, character, damage, startHP)
         {
-            hp = 10;
-            damage = 1;
+
         }
 
-        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
+        public override MovementEnum ReturnMove(MovementEnum direction = MovementEnum.NoMovement)
         {
-            int generateDirection;
+            MovementEnum move;
             do
             {
-                generateDirection = random.Next(0, 5);
+                move = (MovementEnum)random.Next(0, 5);
             }
-            while (vision[generateDirection] is not EmptyTile); //While chosen direction is not empty
+            while ((vision[(int)move] is Obstacle) || (vision[(int)move] is Hero));
 
-            return (MovementEnum)generateDirection;
+            return move;
         }
-        
     }
 }

@@ -4,27 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gade_1B_part_1
+namespace GADE6112_POE
 {
-    public class Hero : Character
+    internal class Hero: Character
     {
-
-        public Hero(int x, int y, int hp, int maxHp, int damage, char character): base(x, y, character) 
+        public Hero(int x, int y, char character = 'H', int hp = 10): base(x, y, character)
         {
-            damage = 2;
+            HP = hp;
+            MaxHp = hp;
+            Damage = 2;
+            weaponReach = 1;
         }
 
-       
-
-        public override MovementEnum ReturnMove(MovementEnum move = MovementEnum.NoMovement)
+        public override MovementEnum ReturnMove(MovementEnum move)
         {
-            // If 
-            
-            if(move == MovementEnum.Up)
-            {
-                if (vision[0] is EmptyTile)
+            //Move Up
+            if (move == MovementEnum.Up)
+                if ((vision[1] is not Obstacle) && (vision[1] is not SwampCreature))
                 {
-                    //Move up
                     return move;
                 }
                 else
@@ -33,73 +30,47 @@ namespace Gade_1B_part_1
                     return move;
                 }
 
-            }
-
+            //Move Down
             else if (move == MovementEnum.Down)
-            {
-                if (vision[1] is EmptyTile)
-                {
-                    //Move down
-                    return move;
-                }
-                else
-                {
-                    move = MovementEnum.NoMovement;
-                    return move;
-                }
-            }
+                    if ((vision[2] is not Obstacle) && (vision[2] is not SwampCreature))
+                        return move;
+                    else
+                    {
+                        move = MovementEnum.NoMovement;
+                        return move;
+                    }
 
-            else if (move == MovementEnum.Left)
-            {
-                if (vision[3] is EmptyTile)
-                {
-                    //Move down
-                    return move;
-                }
-                else
-                {
-                    move = MovementEnum.NoMovement;
-                    return move;
-                }
-            }
+                //Move Left
+                else if (move == MovementEnum.Left)
+                    if ((vision[3] is not Obstacle) && (vision[3] is not SwampCreature))
+                        return move;
+                    else
+                    {
+                        move = MovementEnum.NoMovement;
+                        return move;
+                    }
 
-           else if (move == MovementEnum.Right)
-            {
-                if (vision[2] is EmptyTile)
-                {
-                    //Move down
-                    return move;
-                }
-                else
-                {
-                    move = MovementEnum.NoMovement;
-                    return move;
-                }
-            }
-            else
-            {
-                move = MovementEnum.NoMovement;
-            }
+                //Move Right
+                else if (move == MovementEnum.Right)
+                    if ((vision[4] is not Obstacle) && (vision[4] is not SwampCreature))
+                        return move;
+                    else
+                    {
+                        move = MovementEnum.NoMovement;
+                        return move;
+                    }
+
+                else move = MovementEnum.NoMovement;
+
             return move;
-            
         }
 
         public override string ToString()
         {
-            //string hp = "";
-            //string maxHp = "";
-            //string damage = "2";
-            //string x = "";
-            //string y = "";
-                      
-
-            //throw new NotImplementedException();
-
-            return "Player Stats: \n" + "HP: " + hp + "/" + maxHp +
-                "\nDamage: " + damage + "[" + x + "," + y + "]";
+            return "Player Stats:" + 
+                    "\n HP: " + HP + "/" + MaxHp + 
+                    "\n Damage: " + Damage + 
+                    "\n [" + X + "," + Y + "]\n"; 
         }
-
-       
-        
     }
 }

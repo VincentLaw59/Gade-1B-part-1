@@ -1,94 +1,94 @@
-namespace Gade_1B_part_1
+namespace GADE6112_POE
 {
-    public partial class frmGame : Form
+    public partial class Form1 : Form
     {
-        private static GameEngine gameEngine = new GameEngine();
-        
-
-
-        public static GameEngine GameEngine { get { return gameEngine; } set { gameEngine = value; } }
-
-        
-        public frmGame() 
+        public Form1()
         {
             InitializeComponent();
         }
-               
-                
+
+        private GameEngine gameEngine = new GameEngine();
+
         private void btnStart_Click(object sender, EventArgs e)
-       {
+        {
             //Generate Map
-            
-            redPlayArea.Text = GameEngine.Map.ToString();
-            RedOutput.Text = GameEngine.Map.Player.ToString();
-            
-            for (int i = 0; i < GameEngine.Map.Enemies.Length ; i++)
-            {
-                CmbListOfEnemies.Items.Add(GameEngine.Map.Enemies[i].ToString());
-            }
+            redPlayArea.Text = gameEngine.GameMap.ToString();
+            RedOutput.Text = gameEngine.GameMap.Player.ToString();
+            gameEngine.GameMap.UpdateVision();
 
-            
-       }
-
-        private void btnLeft_Click(object sender, EventArgs e)
-        {            
-            GameEngine.MovePlayer(Character.MovementEnum.Left);
-            GameEngine.Map.gameMap[GameEngine.Map.Player.Y, GameEngine.Map.Player.X] = GameEngine.Map.Player;
-            redPlayArea.Text = GameEngine.Map.ToString();
-            RedOutput.Text = GameEngine.Map.Player.ToString();            
+            UpdateEnemies();
         }
 
         private void bntUp_Click(object sender, EventArgs e)
         {
-            GameEngine.MovePlayer(Character.MovementEnum.Up);
-            GameEngine.Map.gameMap[GameEngine.Map.Player.Y, GameEngine.Map.Player.X] = GameEngine.Map.Player;
-            redPlayArea.Text = GameEngine.Map.ToString();
-            RedOutput.Text = GameEngine.Map.Player.ToString();
+            gameEngine.MovePlayer(Character.MovementEnum.Up);
+            gameEngine.GameMap.gameMap[gameEngine.GameMap.Player.X, gameEngine.GameMap.Player.Y] = gameEngine.GameMap.Player;
+            redPlayArea.Text = gameEngine.GameMap.ToString();
+            RedOutput.Clear();
+            RedOutput.Text = gameEngine.GameMap.Player.ToString();
+
+            UpdateEnemies();
+
         }
 
-        private void btnRight_Click(object sender, EventArgs e)
+        private void btnLeft_Click(object sender, EventArgs e)
         {
-            GameEngine.MovePlayer(Character.MovementEnum.Right);
-            GameEngine.Map.gameMap[GameEngine.Map.Player.Y, GameEngine.Map.Player.X] = GameEngine.Map.Player;
-            redPlayArea.Text = GameEngine.Map.ToString();
-            RedOutput.Text = GameEngine.Map.Player.ToString();
+            gameEngine.MovePlayer(Character.MovementEnum.Left);
+            gameEngine.GameMap.gameMap[gameEngine.GameMap.Player.X, gameEngine.GameMap.Player.Y] = gameEngine.GameMap.Player;
+            redPlayArea.Text = gameEngine.GameMap.ToString();
+            RedOutput.Clear();
+            RedOutput.Text = gameEngine.GameMap.Player.ToString();
+
+            UpdateEnemies();
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            GameEngine.MovePlayer(Character.MovementEnum.Down);
-            GameEngine.Map.gameMap[GameEngine.Map.Player.Y, GameEngine.Map.Player.X] = GameEngine.Map.Player;
-            redPlayArea.Text = GameEngine.Map.ToString();
-            RedOutput.Text = GameEngine.Map.Player.ToString();
+            gameEngine.MovePlayer(Character.MovementEnum.Down);
+            gameEngine.GameMap.gameMap[gameEngine.GameMap.Player.X, gameEngine.GameMap.Player.Y] = gameEngine.GameMap.Player;
+            redPlayArea.Text = gameEngine.GameMap.ToString();
+            RedOutput.Clear();
+            RedOutput.Text = gameEngine.GameMap.Player.ToString();
+
+            UpdateEnemies();
         }
 
-        private void AttackBtn_Click(object sender, EventArgs e)
+        private void btnRight_Click(object sender, EventArgs e)
         {
-            if (CmbListOfEnemies.SelectedIndex == -1) return;
-           bool inRange =  GameEngine.Map.player.CheckRange(GameEngine.Map.Enemies[CmbListOfEnemies.SelectedIndex]);
+            gameEngine.MovePlayer(Character.MovementEnum.Right);
+            gameEngine.GameMap.gameMap[gameEngine.GameMap.Player.X, gameEngine.GameMap.Player.Y] = gameEngine.GameMap.Player;
+            redPlayArea.Text = gameEngine.GameMap.ToString();
+            RedOutput.Clear();
+            RedOutput.Text = gameEngine.GameMap.Player.ToString();
 
-          if (inRange)
-          {
-                MessageBox.Show("I am Attacking!!!!!");
-                //redOutput.Lines.Append("I have attacked!");
-          }
-            else
+            UpdateEnemies();
+        }
+
+        private void UpdateEnemies()
+        {
+            redEnemies.Clear();
+
+            CmbListOfEnemies.Items.Clear();
+            for (int i = 0; i < gameEngine.GameMap.Enemies.Length; i++)
             {
-                MessageBox.Show("I can not Attack????");
-                //redOutput.Lines.Append("I cannot attack?");
+                CmbListOfEnemies.Items.Add(gameEngine.GameMap.Enemies[i].ToString());
+                redEnemies.Text = redEnemies.Text + gameEngine.GameMap.Enemies[i].ToString() + "\n";
             }
+            redPlayArea.Text = gameEngine.GameMap.ToString();
 
+            CmbListOfEnemies.ResetText();
         }
 
-        private void ListOfEnemies_SelectedIndexChanged(object sender, EventArgs e)
+        private void AttackButton_Click(object sender, EventArgs e)
         {
-            
-        }
+            if (CmbListOfEnemies.SelectedItem != null)
+            {
+                gameEngine.AttackEnemy(gameEngine.GameMap.Enemies[CmbListOfEnemies.SelectedIndex]);
+                //redPlayArea.Text = gameEngine.GameMap.ToString();
+            }
+            else MessageBox.Show("No enemy selected!");
 
-        private void ListOfEnemies_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
+            UpdateEnemies();
         }
-                
     }
 }
